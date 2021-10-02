@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Points_Panel.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=2]
 
 [node name="Points_Panel" type="Node2D"]
 script = ExtResource( 1 )
@@ -9,6 +10,7 @@ script = ExtResource( 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 0 )
+custom_fonts/normal_font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
