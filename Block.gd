@@ -19,15 +19,15 @@ func inactivate_it():
 		get_parent().is_fixed = true
 		is_active = false
 		get_tree().root.get_node("Main").active_block = false
-		Global.inactive.append(get_parent().position+position)
+		Global.inactive.append(get_parent().position + position)
 		Global.inactive_blocks.append(self)
 		Global.inactivate_shape()
 		Global.play_thud_sound()
 		check_full_line()
 		
 func can_rotate(val) -> bool:
-	var new_x = get_parent().position.x+val.x
-	var new_y = get_parent().position.y+val.y
+	var new_x = get_parent().position.x + val.x
+	var new_y = get_parent().position.y + val.y
 	
 	if Global.inactive.has(Vector2(new_x, new_y)) or is_off_screen(Vector2(new_x, new_y)):
 		return false
@@ -103,7 +103,6 @@ func destroy_line(indexes):
 	Global.play_wee_sound()
 	stop_counting_down()
 	var line_vals = indexes
-	print(indexes)
 	for i in range(line_vals.size()-1,-1,-1):
 		Global.inactive.remove(line_vals[i])
 		Global.inactive_blocks[line_vals[i]].destroy_block()
@@ -118,14 +117,18 @@ func destroy_block():
 	queue_free()
 
 func explode_block():
-	is_active = false
 	$Timer.stop()
-	$ParticlesSad.restart()
 	$Sprite.frame = 4
-	$SFXTick.stop()
-	$TextureButton.hide()
+	var new_x = get_parent().position.x + position.x
+	var new_y = get_parent().position.y + position.y
+	var index = Global.inactive.find(Vector2(new_x, new_y))
+	if index > 0:
+		Global.inactive.remove(index)
+		Global.inactive_blocks[index].destroy_block()
+		Global.inactive_blocks.remove(index)
 	
 func stop_counting_down():
+	$AnimatedSprite.play("default")
 	$AnimatedSprite.stop()
 	$SFXTick.stop()
 	
@@ -133,6 +136,11 @@ func reset_timer():
 	timer = block_timer
 	stop_counting_down()
 	$Timer.start()
+
+func hide_all_sprites():
+	$TextureButton.hide()
+	$AnimatedSprite.hide()
+	$Sprite.hide()
 
 func _on_Timer_timeout():
 	timer -= 1
@@ -143,10 +151,16 @@ func _on_Timer_timeout():
 		$AnimatedSprite.play('angry')
 		$SFXTick.play()
 		$Sprite.frame = 3
-	if timer <= 1:
+	if timer <= 3:
 		$AnimatedSprite.stop()
 		$Sprite.frame = 2
 		$TextureButton.disabled = true
+	if timer == 2:
+		$ParticlesSad.restart()
+		$SFXSad.play()
+		stop_counting_down()
+	if timer <= 2:
+		hide_all_sprites()
 	if timer <= 0:
 		explode_block()
 
