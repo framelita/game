@@ -1,16 +1,21 @@
 extends Node2D
 
-var is_active=false
+var is_active = false
+var min_timer = 20
+var max_timer = 30
+var timer = 30
 
 func _ready():
-	is_active=true
-	Global.connect("inact_shape", self,"inactivate_it")
+	timer = (randi() % (max_timer - min_timer + 1) + min_timer)
+	is_active = true
+	$RichTextLabel.bbcode_text = str(timer)
+	Global.connect("inact_shape", self, "inactivate_it")
 	
 func inactivate_it():
 	if is_active:
-		get_parent().is_fixed=true
-		is_active=false
-		get_tree().root.get_node("Main").active_block=false
+		get_parent().is_fixed = true
+		is_active = false
+		get_tree().root.get_node("Main").active_block = false
 		Global.inactive.append(get_parent().position+position)
 		Global.inactive_blocks.append(self)
 		Global.inactivate_shape()
@@ -26,14 +31,13 @@ func can_rotate(val) -> bool:
 		return true
 		
 func is_off_screen(vec) -> bool:
-	print(vec.x, vec.y)
-	if vec.x<0:
+	if vec.x < 0:
 		return true
-	elif vec.x>=get_parent().get_parent().get_rect().size.x:
+	elif vec.x >= get_parent().get_parent().get_rect().size.x:
 		return true
-	elif vec.y<0:
+	elif vec.y < 0:
 		return true
-	elif vec.y>=get_parent().get_parent().get_rect().size.y:
+	elif vec.y >= get_parent().get_parent().get_rect().size.y:
 		return true
 	else:
 		return false
@@ -92,7 +96,7 @@ func check_full_line():
 		
 func destroy_line(indexes):
 	Global.add_points()
-	var line_vals=indexes
+	var line_vals = indexes
 	for i in range(line_vals.size()-1,-1,-1):
 		Global.inactive.remove(line_vals[i])
 		Global.inactive_blocks[line_vals[i]].destroy_block()
@@ -105,3 +109,13 @@ func shift_blocks(blocks):
 	
 func destroy_block():
 	queue_free()
+
+func explode_block():
+	$Sprite.frame = 1
+	$Timer.stop()
+
+func _on_Timer_timeout():
+	timer -= 1
+	$RichTextLabel.bbcode_text = str(timer)
+	if (timer <= 0):
+		explode_block()
