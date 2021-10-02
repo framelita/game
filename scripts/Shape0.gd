@@ -29,6 +29,7 @@ func rotate_shape():
 			ch.position = rotation_matrix[rotate_position][j]
 			j += 1
 		rotate_position = rotate_position+1 if rotate_position<3 else 0
+		Global.play_rotate_sound()
 		
 func inactivate_it():
 	for ch in get_children():

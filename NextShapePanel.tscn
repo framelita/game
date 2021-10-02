@@ -6,14 +6,14 @@
 [node name="NextShapePanel" type="Node2D"]
 
 [node name="V" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 422.0
+margin_bottom = 198.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="V"]
-margin_right = 200.0
+margin_right = 422.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 custom_fonts/normal_font = ExtResource( 2 )
@@ -21,7 +21,7 @@ text = "Next Shape:"
 
 [node name="Control" type="Control" parent="V"]
 margin_top = 104.0
-margin_right = 200.0
+margin_right = 422.0
 margin_bottom = 104.0
 
 [node name="Sprite" type="Sprite" parent="V/Control"]

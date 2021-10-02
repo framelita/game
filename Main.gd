@@ -17,6 +17,8 @@ var next_num:int = 0
 func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
 	rnd.randomize()
+	Global.connect("play_rotate_sound", self, "play_rotate_sound")
+	Global.connect("play_thud_sound", self, "play_thud_sound")
 
 func _on_Timer_timeout():
 	$Timer.wait_time = Global.speed
@@ -55,35 +57,8 @@ func _input(event):
 		if Input.is_action_just_pressed("ui_up"):
 			sh.rotate_it()
 
+func play_rotate_sound():
+	$SFXRotate.play()
 
-func _on_Button_pressed():
-	$Audio
-	pass # Replace with function body.
-
-
-func _on_AzureButton_pressed():
-	$AudioAzure.play()
-	$AudioFatGangster.stop()
-	$AudioPetPark.stop()
-	$AudioSinister.stop()
-
-
-func _on_FatGangsterButton_pressed():
-	$AudioAzure.stop()
-	$AudioFatGangster.play()
-	$AudioPetPark.stop()
-	$AudioSinister.stop()
-
-
-func _on_PetParkButton_pressed():
-	$AudioAzure.stop()
-	$AudioFatGangster.stop()
-	$AudioPetPark.play()
-	$AudioSinister.stop()
-
-
-func _on_SinisterButton_pressed():
-	$AudioAzure.stop()
-	$AudioFatGangster.stop()
-	$AudioPetPark.stop()
-	$AudioSinister.play()
+func play_thud_sound():
+	$SFXThud.play()

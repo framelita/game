@@ -22,6 +22,7 @@ func inactivate_it():
 		Global.inactive.append(get_parent().position+position)
 		Global.inactive_blocks.append(self)
 		Global.inactivate_shape()
+		Global.play_thud_sound()
 		check_full_line()
 		
 func can_rotate(val) -> bool:

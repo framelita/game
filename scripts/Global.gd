@@ -2,6 +2,8 @@ extends Node
 
 signal inact_shape
 signal add_points
+signal play_rotate_sound
+signal play_thud_sound
 
 var inactive = []
 var inactive_blocks = []
@@ -19,6 +21,14 @@ func add_points():
 	if points%100 == 0 and speed > .3:
 		speed -= .1
 	emit_signal("add_points")
+	
+func play_rotate_sound():
+	print("play_rotate_sound")
+	emit_signal("play_rotate_sound")
+	
+func play_thud_sound():
+	print("play_thud_sound")
+	emit_signal("play_thud_sound")
 	
 func restart_game():
 	speed = 1

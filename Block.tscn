@@ -110,7 +110,7 @@ texture = ExtResource( 1 )
 centered = false
 hframes = 5
 
-[node name="Giggle" type="AudioStreamPlayer" parent="."]
+[node name="SFXGiggle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
 [node name="ParticlesHeart" type="Particles2D" parent="."]
@@ -138,7 +138,7 @@ local_coords = false
 process_material = SubResource( 7 )
 texture = ExtResource( 11 )
 
-[node name="Sad" type="AudioStreamPlayer" parent="."]
+[node name="SFXSad" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
