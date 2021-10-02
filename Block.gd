@@ -3,10 +3,13 @@ extends Node2D
 var is_active = false
 var min_timer = 20
 var max_timer = 30
+# this block timer will be the default when user click to reset
+var block_timer = 30 
 var timer = 30
 
 func _ready():
-	timer = (randi() % (max_timer - min_timer + 1) + min_timer)
+	block_timer = (randi() % (max_timer - min_timer + 1) + min_timer)
+	reset_timer()
 	is_active = true
 	$RichTextLabel.bbcode_text = str(timer)
 	Global.connect("inact_shape", self, "inactivate_it")
@@ -111,11 +114,23 @@ func destroy_block():
 	queue_free()
 
 func explode_block():
-	$Sprite.frame = 1
+	is_active = false
+	$TextureButton.disabled = true
 	$Timer.stop()
+	
+func reset_timer():
+	timer = block_timer
+	$Timer.start()
 
 func _on_Timer_timeout():
 	timer -= 1
 	$RichTextLabel.bbcode_text = str(timer)
-	if (timer <= 0):
+	if timer <= 0:
 		explode_block()
+
+func _on_TextureButton_pressed():
+	if timer > 0:
+		$Timer.stop()
+		reset_timer()
+	else:
+		$TextureButton.disabled = true
