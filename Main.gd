@@ -23,6 +23,7 @@ func _on_Timer_timeout():
 	if not active_block:
 		num = rnd.randi()%7 if num == -1 else next_num
 		next_num = rnd.randi()%7
+		$NextShapePanel/V/Control/Sprite.frame = next_num
 		sh = shapes[num].instance()
 		$ShapesArea.add_child(sh)
 		sh.position = Vector2(4*Global.grid,Global.grid)
