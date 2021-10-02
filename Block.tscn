@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://assets/graphics/sparkle-white.png" type="Texture" id=1]
 [ext_resource path="res://Block.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/graphics/block.jpg" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/block-pressed.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/block-disabled.png" type="Texture" id=6]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.45
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 10, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.53
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -246.2
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
 
 [node name="Block" type="Node2D"]
 script = ExtResource( 2 )
@@ -39,6 +54,19 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 32, 32 )
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.77
+randomness = 0.8
+visibility_rect = Rect2( -64, -64, 128, 128 )
+local_coords = false
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

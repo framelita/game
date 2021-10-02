@@ -116,6 +116,7 @@ func destroy_block():
 func explode_block():
 	is_active = false
 	$TextureButton.disabled = true
+	$Particles2D.restart()
 	$Timer.stop()
 	
 func reset_timer():
