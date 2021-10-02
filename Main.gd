@@ -18,6 +18,7 @@ func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
 	rnd.randomize()
 	Global.connect("play_rotate_sound", self, "play_rotate_sound")
+	Global.connect("play_wee_sound", self, "play_wee_sound")
 	Global.connect("play_thud_sound", self, "play_thud_sound")
 
 func _on_Timer_timeout():
@@ -59,6 +60,9 @@ func _input(event):
 
 func play_rotate_sound():
 	$SFXRotate.play()
+
+func play_wee_sound():
+	$SFXWee.play()
 
 func play_thud_sound():
 	$SFXThud.play()

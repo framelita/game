@@ -3,6 +3,7 @@ extends Node
 signal inact_shape
 signal add_points
 signal play_rotate_sound
+signal play_wee_sound
 signal play_thud_sound
 
 var inactive = []
@@ -23,11 +24,12 @@ func add_points():
 	emit_signal("add_points")
 	
 func play_rotate_sound():
-	print("play_rotate_sound")
 	emit_signal("play_rotate_sound")
 	
+func play_wee_sound():
+	emit_signal("play_wee_sound")
+	
 func play_thud_sound():
-	print("play_thud_sound")
 	emit_signal("play_thud_sound")
 	
 func restart_game():

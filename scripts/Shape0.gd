@@ -36,7 +36,6 @@ func inactivate_it():
 		if ch.position == create_position:
 			get_tree().reload_current_scene()
 
-
 func move_left():
 	if not is_fixed:
 		for ch in get_children():

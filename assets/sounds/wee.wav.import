@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wee.wav-155d2233b0a9ee0decc1b201d784ce3f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/wee.wav"
+dest_files=[ "res://.import/wee.wav-155d2233b0a9ee0decc1b201d784ce3f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

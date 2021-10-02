@@ -50,7 +50,7 @@ func can_move_down():
 	var new_x = get_parent().position.x + position.x
 	var new_y = get_parent().position.y + position.y
 	
-	if Global.inactive.has(Vector2(new_x, new_y+Global.grid)) or new_y==Global.max_y:
+	if Global.inactive.has(Vector2(new_x, new_y + Global.grid)) or new_y == Global.max_y:
 		inactivate_it()
 		return false
 	else:
@@ -60,7 +60,7 @@ func can_move_left():
 	var new_x = get_parent().position.x + position.x
 	var new_y = get_parent().position.y + position.y
 	
-	if new_x == 0 or (Global.inactive.has(Vector2(new_x-Global.grid, new_y))) or not is_active:
+	if new_x == 0 or (Global.inactive.has(Vector2(new_x - Global.grid, new_y))) or not is_active:
 		return false
 	else:
 		return true
@@ -69,7 +69,7 @@ func can_move_right():
 	var new_x = get_parent().position.x + position.x
 	var new_y = get_parent().position.y + position.y
 	
-	if new_x==Global.max_x or (Global.inactive.has(Vector2(new_x+Global.grid, new_y))) or not is_active:
+	if new_x==Global.max_x or (Global.inactive.has(Vector2(new_x + Global.grid, new_y))) or not is_active:
 		return false
 	else:
 		return true
@@ -100,7 +100,10 @@ func check_full_line():
 		
 func destroy_line(indexes):
 	Global.add_points()
+	Global.play_wee_sound()
+	stop_counting_down()
 	var line_vals = indexes
+	print(indexes)
 	for i in range(line_vals.size()-1,-1,-1):
 		Global.inactive.remove(line_vals[i])
 		Global.inactive_blocks[line_vals[i]].destroy_block()
@@ -119,11 +122,16 @@ func explode_block():
 	$Timer.stop()
 	$ParticlesSad.restart()
 	$Sprite.frame = 4
+	$SFXTick.stop()
 	$TextureButton.hide()
+	
+func stop_counting_down():
+	$AnimatedSprite.stop()
+	$SFXTick.stop()
 	
 func reset_timer():
 	timer = block_timer
-	$AnimatedSprite.stop()
+	stop_counting_down()
 	$Timer.start()
 
 func _on_Timer_timeout():
@@ -133,6 +141,7 @@ func _on_Timer_timeout():
 	$RichTextLabel.bbcode_text = str(timer)
 	if timer <= 10:
 		$AnimatedSprite.play('angry')
+		$SFXTick.play()
 		$Sprite.frame = 3
 	if timer <= 1:
 		$AnimatedSprite.stop()
@@ -145,7 +154,7 @@ func _on_TextureButton_pressed():
 	if timer > 0:
 		$Sprite.frame = 1
 		$ParticlesHeart.restart()
-		$Giggle.play()
+		$SFXGiggle.play()
 		$Timer.stop()
 		reset_timer()
 	else:
