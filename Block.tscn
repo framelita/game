@@ -1,23 +1,55 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://assets/graphics/sparkle-white.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/block-sprite.png" type="Texture" id=1]
 [ext_resource path="res://Block.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/graphics/block.jpg" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/block-pressed.jpg" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/block-bg-default.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/block-bg-light.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/block-disabled.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/sparkle-white.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/mixkit-cartoon-giggles-417.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/graphics/block-angry-sprite.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/heart.png" type="Texture" id=10]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "angry",
+"speed": 2.0
+} ]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.45
 flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
 spread = 180.0
-gravity = Vector3( 0, 10, 0 )
-initial_velocity = 100.0
+gravity = Vector3( 0, -50, 0 )
+initial_velocity = 50.0
 initial_velocity_random = 0.53
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-angle = -246.2
-angle_random = 1.0
 scale = 0.5
 scale_random = 1.0
 
@@ -36,9 +68,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+animation = "angry"
+frame = 3
+centered = false
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 58.0
@@ -55,7 +94,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="ParticlesSparkle" type="Particles2D" parent="."]
 position = Vector2( 32, 32 )
 emitting = false
 amount = 50
@@ -66,7 +105,28 @@ randomness = 0.8
 visibility_rect = Rect2( -64, -64, 128, 128 )
 local_coords = false
 process_material = SubResource( 1 )
+texture = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
+hframes = 4
+
+[node name="Giggle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="ParticlesHeart" type="Particles2D" parent="."]
+position = Vector2( 32, 32 )
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.77
+randomness = 0.8
+visibility_rect = Rect2( -64, -64, 128, 128 )
+local_coords = false
+process_material = SubResource( 1 )
+texture = ExtResource( 10 )
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

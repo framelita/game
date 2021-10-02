@@ -54,3 +54,36 @@ func _input(event):
 			move_down()
 		if Input.is_action_just_pressed("ui_up"):
 			sh.rotate_it()
+
+
+func _on_Button_pressed():
+	$Audio
+	pass # Replace with function body.
+
+
+func _on_AzureButton_pressed():
+	$AudioAzure.play()
+	$AudioFatGangster.stop()
+	$AudioPetPark.stop()
+	$AudioSinister.stop()
+
+
+func _on_FatGangsterButton_pressed():
+	$AudioAzure.stop()
+	$AudioFatGangster.play()
+	$AudioPetPark.stop()
+	$AudioSinister.stop()
+
+
+func _on_PetParkButton_pressed():
+	$AudioAzure.stop()
+	$AudioFatGangster.stop()
+	$AudioPetPark.play()
+	$AudioSinister.stop()
+
+
+func _on_SinisterButton_pressed():
+	$AudioAzure.stop()
+	$AudioFatGangster.stop()
+	$AudioPetPark.stop()
+	$AudioSinister.play()

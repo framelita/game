@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/POL-pet-park-short.ogg-4337d909daa673c4894972bbe2409db1.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/POL-pet-park-short.ogg"
+dest_files=[ "res://.import/POL-pet-park-short.ogg-4337d909daa673c4894972bbe2409db1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

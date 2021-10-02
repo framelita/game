@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/graphics/bg.jpg" type="Texture" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/game-bg.jpg" type="Texture" id=3]
 [ext_resource path="res://NextShapePanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Points_Panel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sounds/POL-a-sinister-puzzle-short.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/POL-azure-waters-short.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/POL-two-fat-gangsters-short.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/POL-pet-park-short.ogg" type="AudioStream" id=9]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -27,4 +31,64 @@ autostart = true
 [node name="Points_Panel" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1000, 0 )
 
+[node name="AudioSinister" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="AudioFatGangster" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="AudioAzure" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="AudioPetPark" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="AzureButton" type="Button" parent="."]
+margin_left = 500.0
+margin_top = 500.0
+margin_right = 579.0
+margin_bottom = 520.0
+rect_scale = Vector2( 2, 2 )
+text = "Play Azure"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FatGangsterButton" type="Button" parent="."]
+margin_left = 500.0
+margin_top = 550.0
+margin_right = 622.0
+margin_bottom = 570.0
+rect_scale = Vector2( 2, 2 )
+text = "Play Fat Gangster"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PetParkButton" type="Button" parent="."]
+margin_left = 500.0
+margin_top = 600.0
+margin_right = 622.0
+margin_bottom = 620.0
+rect_scale = Vector2( 2, 2 )
+text = "Play Pet Park"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SinisterButton" type="Button" parent="."]
+margin_left = 500.0
+margin_top = 650.0
+margin_right = 622.0
+margin_bottom = 670.0
+rect_scale = Vector2( 2, 2 )
+text = "Play Sinister"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="AzureButton" to="." method="_on_AzureButton_pressed"]
+[connection signal="pressed" from="FatGangsterButton" to="." method="_on_FatGangsterButton_pressed"]
+[connection signal="pressed" from="PetParkButton" to="." method="_on_PetParkButton_pressed"]
+[connection signal="pressed" from="SinisterButton" to="." method="_on_SinisterButton_pressed"]

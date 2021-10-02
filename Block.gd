@@ -116,21 +116,31 @@ func destroy_block():
 func explode_block():
 	is_active = false
 	$TextureButton.disabled = true
-	$Particles2D.restart()
+	$ParticlesSparkle.restart()
 	$Timer.stop()
+	$Sprite.frame = 2
 	
 func reset_timer():
 	timer = block_timer
+	$AnimatedSprite.stop()
 	$Timer.start()
 
 func _on_Timer_timeout():
 	timer -= 1
+	if $Sprite.frame != 0:
+		$Sprite.frame = 0
 	$RichTextLabel.bbcode_text = str(timer)
+	if timer <= 10:
+		$AnimatedSprite.play('angry')
+		$Sprite.frame = 3
 	if timer <= 0:
 		explode_block()
 
 func _on_TextureButton_pressed():
 	if timer > 0:
+		$Sprite.frame = 1
+		$ParticlesHeart.restart()
+		$Giggle.play()
 		$Timer.stop()
 		reset_timer()
 	else:
