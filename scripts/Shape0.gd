@@ -11,6 +11,7 @@ func draw_shape(shape):
 	var colour = Global.colour_dictionary[shape]
 	for ch in get_children():
 		ch.position = rotation_matrix[rotate_position][ind]
+		ch.colour = colour
 		ch.get_node("AnimatedSprite").play(colour)
 		ind += 1
 		

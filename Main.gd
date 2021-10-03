@@ -44,7 +44,6 @@ func _on_Timer_timeout():
 
 func _on_CountdownTimer_timeout():
 	countdown_timer -= 1
-	print("_on_CountdownTimer_timeout", countdown_timer)
 	
 	if countdown_timer <= 0 and Global.has_cried.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
@@ -52,10 +51,10 @@ func _on_CountdownTimer_timeout():
 		start_countdown_timer()
 		
 func start_countdown_timer():
-	print("start")
 	countdown_started = true
 	countdown_timer = Global.delay
 	$CountdownTimer.start()
+	
 	
 func add_to_cried():
 	var total_inactive = Global.inactive.size()
@@ -67,7 +66,6 @@ func add_to_cried():
 	Global.has_cried.append(selected_shape)
 	Global.has_cried_blocks.append(selected_block)
 	
-	print("Choose random block", total_inactive, selected_index)
 
 func _on_StartButton_pressed():
 	Global.update_stage(1)

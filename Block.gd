@@ -3,6 +3,7 @@ extends Node2D
 var is_active = false
 var timer = -1
 var countdown_timer = Global.reaction_time + 2 # 2 sec is for the crying animation
+var colour # colour will be set from Shape0
 
 func _ready():
 	is_active = true
@@ -143,12 +144,11 @@ func start_countdown():
 	$Timer.start()
 	
 func stop_counting_down_animation():
-	$AnimatedSprite.play("default")
-	$AnimatedSprite.stop()
+	$AnimatedSprite.play(colour)
 	$SFXTick.stop()
 	
 func reset_timer():
-	timer = Global.reaction_time + 2 # 2s is to ensure that the flying away animation is still visible
+	timer += countdown_timer
 	stop_counting_down_animation()
 	$Timer.start()
 
@@ -160,20 +160,17 @@ func hide_all_sprites():
 func _on_Timer_timeout():
 	timer -= 1
 
-	if $Sprite.frame != 0:
-		$Sprite.frame = 0
 	$RichTextLabel.bbcode_text = str(timer)
-	$SFXTick.play()
 	
-	if timer > 3:
+	print("Timer ticking", timer)
+	if timer == countdown_timer - 1:
 		# start the blinking
-		$AnimatedSprite.play('angry')
-		$Sprite.frame = 3
+		$AnimatedSprite.play(colour + '-blink')
+		$SFXTick.play()
 		
 	if timer <= 3:
 		# don't allow user to click anymore
 		$AnimatedSprite.stop()
-		$Sprite.frame = 2
 		$TextureButton.disabled = true
 		
 	if timer == 2:
@@ -188,15 +185,23 @@ func _on_Timer_timeout():
 	if timer <= 0:
 		#actually clear the block
 		explode_block()
+		
 
 func _on_TextureButton_pressed():
-	if timer > 0:
-		$Sprite.frame = 1
+	# only show event when the timer is between 0 and the coutndown timer
+	if timer > 0 and timer <= countdown_timer:
 		$ParticlesHeart.restart()
-		$SFXGiggle.play()
 		$Timer.stop()
 		reset_timer()
 	elif timer == 0:
 		$TextureButton.disabled = true
 
+func _on_TextureButton_button_down():
+	if timer > 0 and timer <= countdown_timer:
+		$SFXGiggle.play()
+		$AnimatedSprite.play(colour + '-click')
 
+func _on_TextureButton_button_up():
+	if timer > 0 and timer <= countdown_timer:
+		$AnimatedSprite.play(colour)
+	 # Replace with function body.
