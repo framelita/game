@@ -2,7 +2,8 @@ extends Node2D
 
 var is_active = false
 var timer = -1
-var countdown_timer = Global.reaction_time + 2 # 2 sec is for the crying animation
+var animation_time = 3 # for crying animation
+var countdown_timer = Global.reaction_time + animation_time
 var colour # colour will be set from Shape0
 
 func _ready():
@@ -104,47 +105,60 @@ func destroy_line(indexes):
 	for i in range(line_vals.size()-1,-1,-1):
 		var item = Global.inactive[line_vals[i]]
 		var cried_index = Global.has_cried.find(item)
+		var countdown_index = Global.counting_down.find(item)
 		
+		Global.next_crying_block(item)
 		Global.inactive.remove(line_vals[i])
 		Global.inactive_blocks[line_vals[i]].destroy_block()
 		Global.inactive_blocks.remove(line_vals[i])
-		if cried_index > 0:
+		if cried_index >= 0:
 			Global.has_cried.remove(cried_index)
-			Global.has_cried_blocks[cried_index].destroy_block()
-			Global.has_cried_blocks.remove(cried_index)
-		
+		if countdown_index >= 0:
+			Global.counting_down.remove(countdown_index)
 		
 func shift_blocks(blocks):
 	for i in blocks:
+		# when shifting down, check whether it exist in has_cried and counting_down
+		var cried_index = Global.has_cried.find(Global.inactive[i])
+		var countdown_index = Global.counting_down.find(Global.inactive[i])
+		
 		Global.inactive[i].y += Global.grid
 		Global.inactive_blocks[i].position.y += Global.grid
+		
+		var new_position = Global.inactive[i]
+		if cried_index >= 0:
+			Global.has_cried[cried_index].y = Global.inactive[i].y
+		if countdown_index >= 0:
+			Global.counting_down[countdown_index].y = Global.inactive[i].y
 	
 func destroy_block():
+	print("destroying blocks, now left: ", Global.counting_down.size())
 	queue_free()
 
-func explode_block():
+func dying_block():
 	$Timer.stop()
 	$Sprite.frame = 4
 	var new_x = get_parent().position.x + position.x
 	var new_y = get_parent().position.y + position.y
+	var vector = Vector2(new_x, new_y)
 	
-	var index = Global.inactive.find(Vector2(new_x, new_y))
-	var cried_index = Global.has_cried.find(Vector2(new_x, new_y))
-	var countdown_index = Global.counting_down.find(Vector2(new_x, new_y))
-	if index > 0:
+	var index = Global.inactive.find(vector)
+	var cried_index = Global.has_cried.find(vector)
+	var countdown_index = Global.counting_down.find(vector)
+	print("index", index, " cried:", cried_index, " cd: ", countdown_index)
+		
+	if index >= 0:
 		Global.inactive.remove(index)
 		Global.inactive_blocks[index].destroy_block()
 		Global.inactive_blocks.remove(index)
 		
-	if countdown_index > 0:
-		Global.counting_down.remove(countdown_index)
-		Global.counting_down_blocks[countdown_index].destroy_block()
-		Global.counting_down_blocks.remove(countdown_index)
-		
-	if cried_index > 0:
+	if cried_index >= 0:
 		Global.has_cried.remove(cried_index)
-		Global.has_cried_blocks[cried_index].destroy_block()
-		Global.has_cried_blocks.remove(cried_index)
+		
+	if countdown_index >= 0:
+		Global.next_crying_block(vector)
+		Global.counting_down.remove(countdown_index)
+		
 		
 func start_countdown():
 	timer = countdown_timer
@@ -166,16 +180,14 @@ func hide_all_sprites():
 
 func _on_Timer_timeout():
 	timer -= 1
-
 	$RichTextLabel.bbcode_text = str(timer)
 	
-	print("Timer ticking", timer)
 	if timer == countdown_timer - 1:
 		# start the blinking
 		$AnimatedSprite.play(colour + '-blink')
 		$SFXTick.play()
 		
-	if timer <= 3:
+	if timer <= animation_time:
 		# don't allow user to click anymore
 		$AnimatedSprite.play('cry')
 		$TextureButton.disabled = true
@@ -189,7 +201,7 @@ func _on_Timer_timeout():
 		
 	if timer <= 0:
 		#actually clear the block
-		explode_block()
+		dying_block()
 		
 
 func _on_TextureButton_pressed():

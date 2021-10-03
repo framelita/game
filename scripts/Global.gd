@@ -16,9 +16,7 @@ signal play_thud_sound
 var inactive = [] # this refers to blocks that has already touch the ground. consist of position x y
 var inactive_blocks = [] # consist of the block function
 var counting_down = [] # this refers to blocks that is counting down. consist of position x y
-var counting_down_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
-var has_cried_blocks = [] # consist of the block function
 var countdown_indexes = { # which countdown is holding which block
 	"1": {},
 	"2": {},
@@ -27,6 +25,7 @@ var countdown_indexes = { # which countdown is holding which block
 	"5": {}
 }
 
+var game_time = 0
 var points = 0
 var speed = 1 # in seconds
 var grid = 32
@@ -134,9 +133,7 @@ func clear_all_blocks():
 	inactive.clear()
 	inactive_blocks.clear()
 	counting_down.clear()
-	counting_down_blocks.clear()
 	has_cried.clear()
-	has_cried_blocks.clear()
 	countdown_indexes = { # which countdown is holding which block
 		"1": {},
 		"2": {},
@@ -174,6 +171,7 @@ func start_game():
 	emit_signal("start_game")
 	
 func restart_game():
+	game_time = 0
 	speed = 1
 	points = 0
 	update_stage(0)

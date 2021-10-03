@@ -52,7 +52,6 @@ func _on_Timer_timeout():
 		move_down()
 
 func add_to_cried(string_index):
-	print("add to cried", string_index)
 	var total_inactive = Global.inactive.size()
 	var selected_index = rnd.randi() % total_inactive
 	
@@ -64,8 +63,8 @@ func add_to_cried(string_index):
 		add_to_cried(string_index)
 	else:
 		selected_block.start_countdown()
+		Global.counting_down.append(selected_position)
 		Global.has_cried.append(selected_position)
-		Global.has_cried_blocks.append(selected_block)
 		Global.countdown_indexes[string_index] = selected_position
 
 func move_left():
@@ -161,6 +160,7 @@ func clear_stage():
 	show_screen('StageClear')
 
 func next_crying_block(new_position):
+	print("next_crying_block", new_position)
 	for index in Global.countdown_indexes:
 		var block = Global.countdown_indexes[index]
 		if block:
@@ -168,6 +168,8 @@ func next_crying_block(new_position):
 				Global.countdown_indexes[index] = {}
 				reset_countdown(index)
 				start_countdown_timer(index)
+	var block_index = Global.counting_down.find(new_position)
+	Global.counting_down.remove(block_index)
 
 func start_countdown_timer(number):
 	get_node("CountdownTimer" + str(number)).start()
@@ -177,15 +179,17 @@ func reset_countdown(n):
 	var random = rnd.randi_range(Global.delay - 2, Global.delay + 2)
 	get_node("CountdownTimer" + number).wait_time = random
 	get_node("Label" + number).text = str(random)
-	
+
 var cd_index = 0
 
 func _on_CountdownTriggerTimer_timeout():
+	Global.game_time += 1
+	$GeneralTimer.text = "Time: " +  str(Global.game_time)
+	$CD.text = "CD: " + str(Global.counting_down.size()) + "\nHas cried:" + str(Global.has_cried.size())
+	
 	if countdown_started:
 		cd_index += 1
-		if cd_index > 5:
-			$CountdownTriggerTimer.stop()
-		else:
+		if cd_index <= 5:
 			reset_countdown(cd_index)
 			start_countdown_timer(cd_index)
 	

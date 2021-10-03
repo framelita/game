@@ -122,12 +122,35 @@ __meta__ = {
 }
 
 [node name="Label5" type="Label" parent="."]
-margin_left = 274.52
-margin_top = 397.931
-margin_right = 356.52
-margin_bottom = 421.931
+margin_left = 271.52
+margin_top = 403.931
+margin_right = 353.52
+margin_bottom = 427.931
 custom_fonts/font = ExtResource( 14 )
 text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CD" type="Label" parent="."]
+margin_left = 203.0
+margin_top = 130.0
+margin_right = 368.0
+margin_bottom = 204.0
+custom_fonts/font = ExtResource( 14 )
+text = "CD:
+Has Cried:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GeneralTimer" type="Label" parent="."]
+margin_left = 204.0
+margin_top = 66.0
+margin_right = 315.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 14 )
+text = "Time: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
