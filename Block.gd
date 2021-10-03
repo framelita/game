@@ -1,6 +1,9 @@
 extends Node2D
 
 var is_active = false
+var is_destroying = false
+var this_index
+
 var min_timer = 20
 var max_timer = 30
 # this block timer will be the default when user click to reset
@@ -17,7 +20,7 @@ func inactivate_it():
 	if is_active:
 		get_parent().is_fixed = true
 		is_active = false
-		get_tree().root.get_node("Main").active_block = false
+		get_tree().root.get_node("Main").has_active_shape = false
 		Global.inactive.append(get_parent().position + position)
 		Global.inactive_blocks.append(self)
 		Global.inactivate_shape()
@@ -68,7 +71,7 @@ func can_move_right():
 	var new_x = get_parent().position.x + position.x
 	var new_y = get_parent().position.y + position.y
 	
-	if new_x==Global.max_x or (Global.inactive.has(Vector2(new_x + Global.grid, new_y))) or not is_active:
+	if new_x == Global.max_x or (Global.inactive.has(Vector2(new_x + Global.grid, new_y))) or not is_active:
 		return false
 	else:
 		return true
@@ -97,6 +100,12 @@ func check_full_line():
 			index += 1
 		shift_blocks(blocks_to_shift)
 		
+func play_sparkle():
+	$ParticlesSparkle.restart()
+	is_destroying = true
+	timer = 2
+	$Timer.start()
+		
 func destroy_line(indexes):
 	Global.add_points()
 	Global.play_wee_sound()
@@ -104,8 +113,8 @@ func destroy_line(indexes):
 	var line_vals = indexes
 	for i in range(line_vals.size()-1,-1,-1):
 		Global.inactive.remove(line_vals[i])
-		Global.inactive_blocks[line_vals[i]].destroy_block()
-		Global.inactive_blocks.remove(line_vals[i])
+		Global.inactive_blocks[line_vals[i]].play_sparkle()
+		this_index = line_vals[i]
 
 func shift_blocks(blocks):
 	for i in blocks:
@@ -143,34 +152,40 @@ func hide_all_sprites():
 
 func _on_Timer_timeout():
 	timer -= 1
-	if $Sprite.frame != 0:
-		$Sprite.frame = 0
-	$RichTextLabel.bbcode_text = str(timer)
-	$SFXTick.play()
 	
-	if timer > 3:
-		# start the blinking
-		$AnimatedSprite.play('angry')
-		$Sprite.frame = 3
+	if is_destroying:
+		if timer <= 0:
+			Global.inactive_blocks[this_index].destroy_block()
+			Global.inactive_blocks.remove(this_index)
+	else:
+		if $Sprite.frame != 0:
+			$Sprite.frame = 0
+		$RichTextLabel.bbcode_text = str(timer)
+		$SFXTick.play()
 		
-	if timer <= 3:
-		# don't allow user to click anymore
-		$AnimatedSprite.stop()
-		$Sprite.frame = 2
-		$TextureButton.disabled = true
-		
-	if timer == 2:
-		# start show the flying away
-		$ParticlesSad.restart()
-		$SFXSad.play()
-		stop_counting_down_animation()
-		
-	if timer <= 2:
-		hide_all_sprites()
-		
-	if timer <= 0:
-		#actually clear the block
-		explode_block()
+		if timer > 3:
+			# start the blinking
+			$AnimatedSprite.play('angry')
+			$Sprite.frame = 3
+			
+		if timer <= 3:
+			# don't allow user to click anymore
+			$AnimatedSprite.stop()
+			$Sprite.frame = 2
+			$TextureButton.disabled = true
+			
+		if timer == 2:
+			# start show the flying away
+			$ParticlesSad.restart()
+			$SFXSad.play()
+			stop_counting_down_animation()
+			
+		if timer <= 2:
+			hide_all_sprites()
+			
+		if timer <= 0:
+			#actually clear the block
+			explode_block()
 
 func _on_TextureButton_pressed():
 	if timer > 0:

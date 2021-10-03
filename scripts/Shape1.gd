@@ -8,5 +8,5 @@ func _ready():
 	[Vector2(Global.grid,0),Vector2(0,0),Vector2(-Global.grid,0),Vector2(-2*Global.grid,0)],
 	[Vector2(0,-Global.grid),Vector2(0,0),Vector2(0,Global.grid),Vector2(0,2*Global.grid)]
 	]
-	draw_shape()
+	draw_shape(1)
 	rotate_position=1

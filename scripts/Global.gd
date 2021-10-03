@@ -11,9 +11,8 @@ var inactive = [] # this refers to blocks that has already touch the ground. con
 var inactive_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
 var has_cried_blocks = [] # consist of the block function
-var blocks_to_start_countdown = 3 # how many blocks before countdown start
 var points = 0
-var speed = 1
+var speed = 2
 var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
@@ -33,11 +32,22 @@ var stage_dictionary = {
 	},
 }
 
+var colour_dictionary = {
+	1: "red",
+	2: "orange",
+	3: "yellow",
+	4: "green",
+	5: "blue",
+	6: "purple",
+	7: "magenta"
+}
+
 var stage = 0
 var max_crying = 5 # number of countdown
 var delay = 10 # seconds of each countdown
 var reaction_time = 10 # how long from cry to diw
 var target_rows = 5 # how many rows to clear
+var blocks_to_start_countdown = 3 # how many blocks before countdown start
 
 func inactivate_shape():
 	emit_signal("inact_shape")

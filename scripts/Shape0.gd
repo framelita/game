@@ -6,10 +6,12 @@ var is_fixed = false
 var rotation_matrix = []
 var create_position:Vector2 = Vector2.ZERO
 
-func draw_shape():
+func draw_shape(shape):
 	var ind = 0
+	var colour = Global.colour_dictionary[shape]
 	for ch in get_children():
 		ch.position = rotation_matrix[rotate_position][ind]
+		ch.get_node("AnimatedSprite").play(colour)
 		ind += 1
 		
 func rotate_it():

@@ -9,7 +9,7 @@ onready var shape6 = preload("res://Shape6.tscn")
 onready var shape7 = preload("res://Shape7.tscn")
 var shapes = []
 var active_shape
-var active_block = false
+var has_active_shape = false
 var rnd = RandomNumberGenerator.new()
 var num:int = -1
 var next_num:int = 0
@@ -24,14 +24,14 @@ func _ready():
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
 func _on_Timer_timeout():
 	$Timer.wait_time = Global.speed
-	if not active_block:
+	if not has_active_shape:
 		num = rnd.randi() % 7 if num == -1 else next_num
 		next_num = rnd.randi() % 7
 		$NextShapePanel/V/Control/Sprite.frame = next_num
 		active_shape = shapes[num].instance()
 		$ShapesArea.add_child(active_shape)
 		active_shape.position = Vector2(4 * Global.grid, Global.grid)
-		active_block = true
+		has_active_shape = true
 	else:
 		move_down()
 
@@ -40,15 +40,15 @@ func _on_StartButton_pressed():
 	$Timer.start()
 
 func move_left():
-	if active_block:
+	if has_active_shape:
 		active_shape.move_left()
 
 func move_right():
-	if active_block:
+	if has_active_shape:
 		active_shape.move_right()
 
 func move_down():
-	if active_block:
+	if has_active_shape:
 		active_shape.move_down()
 		$Timer.start()
 
