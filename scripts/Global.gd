@@ -105,7 +105,7 @@ func restart_game():
 	speed = 1
 	points = 0
 	update_stage(1)
-	get_tree().reload_current_scene()
+	var _error = get_tree().reload_current_scene()
 	emit_signal("restart_game")
 	
 func pause_game():

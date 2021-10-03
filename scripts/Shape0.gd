@@ -37,7 +37,7 @@ func rotate_shape():
 func inactivate_it():
 	for ch in get_children():
 		if ch.position == create_position:
-			get_tree().reload_current_scene()
+			var _error = get_tree().reload_current_scene()
 
 func move_left():
 	if not is_fixed:

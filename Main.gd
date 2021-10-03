@@ -21,14 +21,14 @@ var hold_down = false
 func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
 	rnd.randomize()
-	Global.connect("play_rotate_sound", self, "play_rotate_sound")
-	Global.connect("play_wee_sound", self, "play_wee_sound")
-	Global.connect("play_thud_sound", self, "play_thud_sound")
-	Global.connect("pause_game", self, "pause_game")
-	Global.connect("start_game", self, "start_game")
-	Global.connect("restart_game", self, "restart_game")
-	Global.connect("game_over", self, "game_over")
-	Global.connect("next_crying_block", self, "next_crying_block")
+	var _error = Global.connect("play_rotate_sound", self, "play_rotate_sound")
+	var _error2 = Global.connect("play_wee_sound", self, "play_wee_sound")
+	var _error3 = Global.connect("play_thud_sound", self, "play_thud_sound")
+	var _error4 = Global.connect("pause_game", self, "pause_game")
+	var _error5 = Global.connect("start_game", self, "start_game")
+	var _error6 = Global.connect("restart_game", self, "restart_game")
+	var _error7 = Global.connect("game_over", self, "game_over")
+	var _error8 = Global.connect("next_crying_block", self, "next_crying_block")
 
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
 func _on_Timer_timeout():
@@ -81,9 +81,6 @@ func add_to_cried():
 		Global.has_cried.append(selected_shape)
 		Global.has_cried_blocks.append(selected_block)
 
-func _on_StartButton_pressed():
-	start_game()
-
 func move_left():
 	if has_active_shape:
 		active_shape.move_left()
@@ -97,7 +94,7 @@ func move_down():
 		active_shape.move_down()
 		$Timer.start()
 
-func _input(event):
+func _input(_event):
 	if active_shape:
 		if Input.is_action_just_pressed("ui_right"):
 			move_right()
@@ -159,4 +156,7 @@ func clear_stage():
 	Global.pause_game()
 	$SFXStageClear.play()
 	show_screen('StageClear')
+
+func next_crying_block():
+	pass
 	

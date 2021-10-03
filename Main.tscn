@@ -56,16 +56,6 @@ stream = ExtResource( 9 )
 stream = ExtResource( 10 )
 volume_db = 5.0
 
-[node name="StartButton" type="Button" parent="."]
-margin_left = 187.224
-margin_top = 344.857
-margin_right = 259.224
-margin_bottom = 373.857
-text = "START"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CountdownTimer" type="Timer" parent="."]
 
 [node name="Overlay" parent="." instance=ExtResource( 11 )]
@@ -77,5 +67,4 @@ stream = ExtResource( 12 )
 stream = ExtResource( 13 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_CountdownTimer_timeout"]

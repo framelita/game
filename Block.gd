@@ -8,8 +8,8 @@ var colour # colour will be set from Shape0
 func _ready():
 	is_active = true
 	$RichTextLabel.bbcode_text = str(timer)
-	Global.connect("inact_shape", self, "inactivate_it")
-	Global.connect("pause_game", self, "pause_game")
+	var _error = Global.connect("inact_shape", self, "inactivate_it")
+	var _error2 = Global.connect("pause_game", self, "pause_game")
 	
 func inactivate_it():
 	if is_active:
