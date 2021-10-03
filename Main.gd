@@ -174,16 +174,9 @@ func start_countdown_timer(number):
 	
 func reset_countdown(n):
 	var number = str(n)
-	if number == "1":
-		countdown_timer1 = Global.delay
-	if number == "2":
-		countdown_timer2 = Global.delay
-	if number == "3":
-		countdown_timer3 = Global.delay
-	if number == "4":
-		countdown_timer4 = Global.delay
-	if number == "5":
-		countdown_timer5 = Global.delay
+	var random = rnd.randi() % (Global.delay / 2) + (Global.delay / 2)
+	get_node("CountdownTimer" + number).wait_time = random
+	get_node("Label" + number).text = str(random)
 	
 var cd_index = 0
 
@@ -193,48 +186,39 @@ func _on_CountdownTriggerTimer_timeout():
 		if cd_index > 5:
 			$CountdownTriggerTimer.stop()
 		else:
+			reset_countdown(cd_index)
 			start_countdown_timer(cd_index)
 	
 func _on_CountdownTimer1_timeout():
-	countdown_timer1 -= 1
-	$Label1.text = str(countdown_timer1)
-	if countdown_timer1 <= 0 and Global.counting_down.size() <= Global.max_crying:
+	if Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		reset_countdown(1)
 		add_to_cried("1")
 		start_countdown_timer(1)
 
 func _on_CountdownTimer2_timeout():
-	countdown_timer2 -= 1
-	$Label2.text = str(countdown_timer2)
-	if countdown_timer2 <= 0 and Global.counting_down.size() <= Global.max_crying:
+	if Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		reset_countdown(2)
 		add_to_cried("2")
 		start_countdown_timer(2)
 
 func _on_CountdownTimer3_timeout():
-	countdown_timer3 -= 1
-	$Label3.text = str(countdown_timer3)
-	if countdown_timer3 <= 0 and Global.counting_down.size() <= Global.max_crying:
+	if Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		reset_countdown(3)
 		add_to_cried("3")
 		start_countdown_timer(3)
 
 func _on_CountdownTimer4_timeout():
-	countdown_timer4 -= 1
-	$Label4.text = str(countdown_timer4)
-	if countdown_timer4 <= 0 and Global.counting_down.size() <= Global.max_crying:
+	if Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		reset_countdown(4)
 		add_to_cried("4")
 		start_countdown_timer(4)
 
 func _on_CountdownTimer5_timeout():
-	countdown_timer5 -= 1
-	$Label5.text = str(countdown_timer5)
-	if countdown_timer5 <= 0 and Global.counting_down.size() <= Global.max_crying:
+	if Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		reset_countdown(5)
 		add_to_cried("5")

@@ -177,17 +177,15 @@ func _on_Timer_timeout():
 		
 	if timer <= 3:
 		# don't allow user to click anymore
-		$AnimatedSprite.stop()
+		$AnimatedSprite.play('cry')
 		$TextureButton.disabled = true
 		
-	if timer == 2:
+	if timer == 1:
 		# start show the flying away
 		$ParticlesSad.restart()
 		$SFXSad.play()
-		stop_counting_down_animation()
-		
-	if timer <= 2:
 		hide_all_sprites()
+		$SFXTick.stop()
 		
 	if timer <= 0:
 		#actually clear the block

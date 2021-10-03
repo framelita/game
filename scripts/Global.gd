@@ -176,7 +176,7 @@ func start_game():
 func restart_game():
 	speed = 1
 	points = 0
-	update_stage(1)
+	update_stage(0)
 	get_tree().reload_current_scene()
 	emit_signal("restart_game")
 	
