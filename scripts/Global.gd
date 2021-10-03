@@ -28,15 +28,63 @@ var stage_dictionary = { # change this to set the stage variables
 	1: {
 		"max_crying": 5, # number of countdown
 		"delay": 10, # seconds of each countdown
-		"reaction_time": 10, # how long from cry to diw
+		"reaction_time": 6, # how long from cry to diw
 		"target_score": 500 # target score to complete the level
 	},
 	2: {
 		"max_crying": 5,
 		"delay": 10,
-		"reaction_time": 10,
+		"reaction_time": 6,
+		"target_score": 600
+	},
+	3: {
+		"max_crying": 6,
+		"delay": 10,
+		"reaction_time": 6,
+		"target_score": 700
+	},
+	4: {
+		"max_crying": 6,
+		"delay": 10,
+		"reaction_time": 5,
+		"target_score": 800
+	},
+	5: {
+		"max_crying": 7,
+		"delay": 10,
+		"reaction_time": 5,
+		"target_score": 900
+	},
+	6: {
+		"max_crying": 7,
+		"delay": 10,
+		"reaction_time": 5,
 		"target_score": 1000
 	},
+	7: {
+		"max_crying": 8,
+		"delay": 10,
+		"reaction_time": 4,
+		"target_score": 1100
+	},
+	8: {
+		"max_crying": 8,
+		"delay": 10,
+		"reaction_time": 4,
+		"target_score": 1200
+	},
+	9: {
+		"max_crying": 9,
+		"delay": 10,
+		"reaction_time": 4,
+		"target_score": 1300
+	},
+	10: {
+		"max_crying": 9,
+		"delay": 10,
+		"reaction_time": 3,
+		"target_score": 1000000000000000
+	},	
 }
 
 var colour_dictionary = {
