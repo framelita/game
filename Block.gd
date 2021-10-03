@@ -9,7 +9,6 @@ var timer = 30
 
 func _ready():
 	block_timer = (randi() % (max_timer - min_timer + 1) + min_timer)
-	reset_timer()
 	is_active = true
 	$RichTextLabel.bbcode_text = str(timer)
 	Global.connect("inact_shape", self, "inactivate_it")
@@ -101,7 +100,7 @@ func check_full_line():
 func destroy_line(indexes):
 	Global.add_points()
 	Global.play_wee_sound()
-	stop_counting_down()
+	stop_counting_down_animation()
 	var line_vals = indexes
 	for i in range(line_vals.size()-1,-1,-1):
 		Global.inactive.remove(line_vals[i])
@@ -127,14 +126,14 @@ func explode_block():
 		Global.inactive_blocks[index].destroy_block()
 		Global.inactive_blocks.remove(index)
 	
-func stop_counting_down():
+func stop_counting_down_animation():
 	$AnimatedSprite.play("default")
 	$AnimatedSprite.stop()
 	$SFXTick.stop()
 	
 func reset_timer():
-	timer = block_timer
-	stop_counting_down()
+	timer = Global.reaction_time + 2 # 2s is to ensure that the flying away animation is still visible
+	stop_counting_down_animation()
 	$Timer.start()
 
 func hide_all_sprites():
@@ -147,21 +146,30 @@ func _on_Timer_timeout():
 	if $Sprite.frame != 0:
 		$Sprite.frame = 0
 	$RichTextLabel.bbcode_text = str(timer)
-	if timer <= 10:
+	$SFXTick.play()
+	
+	if timer > 3:
+		# start the blinking
 		$AnimatedSprite.play('angry')
-		$SFXTick.play()
 		$Sprite.frame = 3
+		
 	if timer <= 3:
+		# don't allow user to click anymore
 		$AnimatedSprite.stop()
 		$Sprite.frame = 2
 		$TextureButton.disabled = true
+		
 	if timer == 2:
+		# start show the flying away
 		$ParticlesSad.restart()
 		$SFXSad.play()
-		stop_counting_down()
+		stop_counting_down_animation()
+		
 	if timer <= 2:
 		hide_all_sprites()
+		
 	if timer <= 0:
+		#actually clear the block
 		explode_block()
 
 func _on_TextureButton_pressed():

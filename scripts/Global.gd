@@ -7,8 +7,11 @@ signal play_rotate_sound
 signal play_wee_sound
 signal play_thud_sound
 
-var inactive = []
-var inactive_blocks = []
+var inactive = [] # this refers to blocks that has already touch the ground. consist of position x y
+var inactive_blocks = [] # consist of the block function
+var has_cried = [] # this refers to blocks that has already cried. consist of position x y
+var has_cried_blocks = [] # consist of the block function
+var blocks_to_start_countdown = 3 # how many blocks before countdown start
 var points = 0
 var speed = 1
 var grid = 32
@@ -44,9 +47,17 @@ func add_points():
 	if points%100 == 0 and speed > .3:
 		speed -= .1
 	emit_signal("add_points")
+
+func clear_all_blocks():
+	inactive.clear()
+	inactive_blocks.clear()
+	has_cried.clear()
+	has_cried_blocks.clear()
 	
 func update_stage(new_stage):
 	stage = new_stage
+	update_stage_variables()
+	clear_all_blocks()
 	emit_signal("update_stage")
 	
 func play_rotate_sound():
@@ -59,16 +70,14 @@ func play_thud_sound():
 	emit_signal("play_thud_sound")
 	
 func update_stage_variables():
-	max_crying = stage_dictionary[stage]["max_crying"]
-	delay = stage_dictionary[stage]["delay"]
-	reaction_time = stage_dictionary[stage]["reaction_time"]
-	target_rows = stage_dictionary[stage]["target_rows"]
+	if stage >= 1:
+		max_crying = stage_dictionary[stage]["max_crying"]
+		delay = stage_dictionary[stage]["delay"]
+		reaction_time = stage_dictionary[stage]["reaction_time"]
+		target_rows = stage_dictionary[stage]["target_rows"]
 	
 func restart_game():
 	speed = 1
 	points = 0
-	inactive.clear()
-	inactive_blocks.clear()
 	update_stage(1)
-	update_stage_variables()
 	get_tree().reload_current_scene()
