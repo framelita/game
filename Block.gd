@@ -9,6 +9,7 @@ func _ready():
 	is_active = true
 	$RichTextLabel.bbcode_text = str(timer)
 	Global.connect("inact_shape", self, "inactivate_it")
+	Global.connect("pause_game", self, "pause_game")
 	
 func inactivate_it():
 	if is_active:
@@ -128,12 +129,18 @@ func explode_block():
 	var new_y = get_parent().position.y + position.y
 	
 	var index = Global.inactive.find(Vector2(new_x, new_y))
+	var cried_index = Global.has_cried.find(Vector2(new_x, new_y))
+	var countdown_index = Global.counting_down.find(Vector2(new_x, new_y))
 	if index > 0:
 		Global.inactive.remove(index)
 		Global.inactive_blocks[index].destroy_block()
 		Global.inactive_blocks.remove(index)
 		
-	var cried_index = Global.has_cried.find(Vector2(new_x, new_y))
+	if countdown_index > 0:
+		Global.counting_down.remove(countdown_index)
+		Global.counting_down_blocks[countdown_index].destroy_block()
+		Global.counting_down_blocks.remove(countdown_index)
+		
 	if cried_index > 0:
 		Global.has_cried.remove(cried_index)
 		Global.has_cried_blocks[cried_index].destroy_block()
@@ -192,7 +199,10 @@ func _on_TextureButton_pressed():
 	if timer > 0 and timer <= countdown_timer:
 		$ParticlesHeart.restart()
 		$Timer.stop()
-		reset_timer()
+		Global.next_crying_block()
+		stop_counting_down_animation()
+		timer = -1
+		$RichTextLabel.bbcode_text = str(timer)
 	elif timer == 0:
 		$TextureButton.disabled = true
 
@@ -204,4 +214,9 @@ func _on_TextureButton_button_down():
 func _on_TextureButton_button_up():
 	if timer > 0 and timer <= countdown_timer:
 		$AnimatedSprite.play(colour)
-	 # Replace with function body.
+
+func pause_game():
+	$SFXTick.stop()
+	$Timer.stop()
+
+

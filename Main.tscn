@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/graphics/bg-small.jpg" type="Texture" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://assets/sounds/POL-two-fat-gangsters-short.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/sounds/wee.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/sad2.wav" type="AudioStream" id=10]
+[ext_resource path="res://Overlay.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/sounds/mixkit-final-level-bonus-2061.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/mixkit-negative-guitar-tone-2324.wav" type="AudioStream" id=13]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -64,6 +67,14 @@ __meta__ = {
 }
 
 [node name="CountdownTimer" type="Timer" parent="."]
+
+[node name="Overlay" parent="." instance=ExtResource( 11 )]
+
+[node name="SFXStageClear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="SFXGameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

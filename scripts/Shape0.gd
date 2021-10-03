@@ -61,7 +61,7 @@ func move_down():
 			if not ch.can_move_down():
 				print("create position: %s e position: %s"%[create_position,position])
 				if create_position == position:
-					Global.restart_game()
+					Global.game_over()
 				is_fixed = true
 				return
 		position.y += Global.grid

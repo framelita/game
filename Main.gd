@@ -24,6 +24,11 @@ func _ready():
 	Global.connect("play_rotate_sound", self, "play_rotate_sound")
 	Global.connect("play_wee_sound", self, "play_wee_sound")
 	Global.connect("play_thud_sound", self, "play_thud_sound")
+	Global.connect("pause_game", self, "pause_game")
+	Global.connect("start_game", self, "start_game")
+	Global.connect("restart_game", self, "restart_game")
+	Global.connect("game_over", self, "game_over")
+	Global.connect("next_crying_block", self, "next_crying_block")
 
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
 func _on_Timer_timeout():
@@ -47,34 +52,37 @@ func _on_Timer_timeout():
 func _on_CountdownTimer_timeout():
 	countdown_timer -= 1
 	
-	if countdown_timer <= 0 and Global.has_cried.size() <= Global.max_crying:
+	if countdown_timer <= 0 and Global.counting_down.size() <= Global.max_crying:
 		# if the timer reach 0 and it's still less than max crying of the level, add more
 		add_to_cried()
 		start_countdown_timer()
 		
 	if Global.points >= Global.target_score:
-		pass
+		clear_stage()
 		
 		
 func start_countdown_timer():
 	countdown_started = true
 	countdown_timer = Global.delay
 	$CountdownTimer.start()
-	
-	
+
 func add_to_cried():
 	var total_inactive = Global.inactive.size()
 	var selected_index = rnd.randi() % total_inactive
+	
 	var selected_shape = Global.inactive[selected_index]
 	var selected_block = Global.inactive_blocks[selected_index]
 	
-	selected_block.start_countdown()
-	Global.has_cried.append(selected_shape)
-	Global.has_cried_blocks.append(selected_block)
+	# if it has cried before, select another shape
+	if Global.has_cried.has(selected_shape):
+		add_to_cried()
+	else:
+		selected_block.start_countdown()
+		Global.has_cried.append(selected_shape)
+		Global.has_cried_blocks.append(selected_block)
 
 func _on_StartButton_pressed():
-	Global.update_stage(1)
-	$Timer.start()
+	start_game()
 
 func move_left():
 	if has_active_shape:
@@ -109,3 +117,46 @@ func play_wee_sound():
 func play_thud_sound():
 	$SFXThud.play()
 
+func pause_game():
+	$Timer.stop()
+	$CountdownTimer.stop()
+	
+func show_screen(screen):
+	$Overlay/Opening.hide()
+	$Overlay/GameOver.hide()
+	$Overlay/StageClear.hide()
+	$Overlay/YouWon.hide()
+	
+	if screen == 'Opening':
+		$Overlay/MarginContainer/StartButton.text = 'START'
+	elif screen == 'StageClear':
+		$Overlay/MarginContainer/StartButton.text = 'NEXT STAGE'
+	else:
+		$Overlay/MarginContainer/StartButton.text = 'RESTART'
+	
+	$Overlay.show()
+	$Overlay.get_node(screen).show()
+	$Overlay/MarginContainer.show()
+	
+func hide_other_screen():
+	$Overlay/Opening.hide()
+	$Overlay/GameOver.hide()
+	$Overlay/StageClear.hide()
+	$Overlay/YouWon.hide()
+
+func game_over():
+	Global.pause_game()
+	$SFXGameOver.play()
+	show_screen('GameOver')
+	
+func start_game():
+	hide_other_screen()
+	$Overlay.hide()
+	$Timer.start()
+	Global.update_stage(Global.stage + 1)
+	
+func clear_stage():
+	Global.pause_game()
+	$SFXStageClear.play()
+	show_screen('StageClear')
+	

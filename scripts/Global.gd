@@ -3,12 +3,19 @@ extends Node
 signal inact_shape
 signal add_points
 signal update_stage
+signal restart_game
+signal start_game
+signal pause_game
+signal game_over
+signal next_crying_block
 signal play_rotate_sound
 signal play_wee_sound
 signal play_thud_sound
 
 var inactive = [] # this refers to blocks that has already touch the ground. consist of position x y
 var inactive_blocks = [] # consist of the block function
+var counting_down = [] # this refers to blocks that is counting down. consist of position x y
+var counting_down_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
 var has_cried_blocks = [] # consist of the block function
 var points = 0
@@ -87,9 +94,22 @@ func update_stage_variables():
 		delay = stage_dictionary[stage]["delay"]
 		reaction_time = stage_dictionary[stage]["reaction_time"]
 		target_score = stage_dictionary[stage]["target_score"]
+		
+func game_over():
+	emit_signal("game_over")
+	
+func start_game():
+	emit_signal("start_game")
 	
 func restart_game():
 	speed = 1
 	points = 0
 	update_stage(1)
 	get_tree().reload_current_scene()
+	emit_signal("restart_game")
+	
+func pause_game():
+	emit_signal("pause_game")
+	
+func next_crying_block():
+	emit_signal("next_crying_block")
