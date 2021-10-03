@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/fonts/Kenney Pixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/graphics/slime2.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/slime-bg.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/slime-grey.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/sparkle-white.png" type="Texture" id=7]
 [ext_resource path="res://assets/sounds/giggle.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/graphics/heart.png" type="Texture" id=10]
-[ext_resource path="res://assets/graphics/block-sad.png" type="Texture" id=11]
 [ext_resource path="res://assets/graphics/Heart.tres" type="Material" id=12]
 [ext_resource path="res://assets/sounds/Tick Tock-SoundBible.com-1165545065.mp3" type="AudioStream" id=13]
 [ext_resource path="res://assets/sounds/sad.wav" type="AudioStream" id=14]
@@ -32,101 +32,101 @@ region = Rect2( 0, 192, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
-region = Rect2( 0, 160, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 5 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 0, 160, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 5 )
 region = Rect2( 64, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 192, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 96, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 96, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 64, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 64, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 64, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 192, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 192, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 160, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 128, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 128, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 128, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=37]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 160, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 5 )
 region = Rect2( 32, 160, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 192, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 160, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 192, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 192, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 128, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 128, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 128, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=29]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
@@ -143,11 +143,6 @@ animations = [ {
 "name": "green",
 "speed": 4.0
 }, {
-"frames": [  ],
-"loop": true,
-"name": "red",
-"speed": 4.0
-}, {
 "frames": [ SubResource( 4 ) ],
 "loop": true,
 "name": "magenta",
@@ -155,12 +150,17 @@ animations = [ {
 }, {
 "frames": [ SubResource( 5 ) ],
 "loop": true,
-"name": "purple",
+"name": "orange",
 "speed": 4.0
 }, {
 "frames": [ SubResource( 6 ) ],
 "loop": true,
-"name": "orange",
+"name": "purple",
+"speed": 4.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "red",
 "speed": 4.0
 }, {
 "frames": [ SubResource( 7 ) ],
@@ -168,90 +168,90 @@ animations = [ {
 "name": "yellow",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 15 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "green-click",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 17 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
-"name": "magenta-click",
+"name": "purple-blink",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ) ],
-"loop": true,
-"name": "green-blink",
-"speed": 4.0
-}, {
-"frames": [ SubResource( 21 ), SubResource( 22 ) ],
-"loop": true,
-"name": "orange-blink",
-"speed": 4.0
-}, {
-"frames": [ SubResource( 23 ) ],
-"loop": true,
-"name": "orange-click",
-"speed": 4.0
-}, {
-"frames": [ SubResource( 25 ), SubResource( 26 ) ],
-"loop": true,
-"name": "yellow-blink",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 40 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
 "name": "yellow-click",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 29 ), SubResource( 30 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
-"name": "magenta-blink",
+"name": "orange-blink",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 8 ) ],
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
-"name": "red-click",
-"speed": 2.0
-}, {
-"frames": [ SubResource( 31 ) ],
-"loop": true,
-"name": "purple-click",
+"name": "green-blink",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "red-blink",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 33 ), SubResource( 39 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "yellow-blink",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "magenta-click",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "purple-click",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "magenta-blink",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "blue-blink",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 35 ) ],
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "red-click",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "orange-click",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 28 ) ],
 "loop": true,
 "name": "blue-click",
 "speed": 4.0
-}, {
-"frames": [ SubResource( 37 ), SubResource( 38 ) ],
-"loop": true,
-"name": "purple-blink",
-"speed": 4.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=30]
 flag_disable_z = true
 direction = Vector3( 1, 1, 0 )
 spread = 50.0
-gravity = Vector3( 0, 500, 0 )
-initial_velocity = 214.53
+gravity = Vector3( 0, -200, 0 )
+initial_velocity = 30.0
 initial_velocity_random = 0.23
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 12.3
 angle_random = 0.81
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=31]
 font_data = ExtResource( 3 )
 
 [node name="Block" type="Node2D"]
@@ -269,7 +269,7 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 12 )
+frames = SubResource( 29 )
 animation = "magenta-blink"
 frame = 1
 centered = false
@@ -313,16 +313,15 @@ texture = ExtResource( 10 )
 position = Vector2( 16, 16 )
 z_index = 2
 z_as_relative = false
-emitting = false
 amount = 1
-lifetime = 5.0
+lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.8
 visibility_rect = Rect2( -64, -64, 128, 128 )
 local_coords = false
-process_material = SubResource( 13 )
-texture = ExtResource( 11 )
+process_material = SubResource( 30 )
+texture = ExtResource( 6 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 6.0
@@ -333,7 +332,7 @@ rect_min_size = Vector2( 24, 24 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 14 )
+custom_fonts/normal_font = SubResource( 31 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "a"
 scroll_active = false
