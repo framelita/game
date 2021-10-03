@@ -13,6 +13,8 @@ var has_active_shape = false
 var rnd = RandomNumberGenerator.new()
 var num:int = -1
 var next_num:int = 0
+var countdown_timer = 1
+var countdown_started = false
 
 func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
@@ -24,6 +26,7 @@ func _ready():
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
 func _on_Timer_timeout():
 	$Timer.wait_time = Global.speed
+	
 	if not has_active_shape:
 		num = rnd.randi() % 7 if num == -1 else next_num
 		next_num = rnd.randi() % 7
@@ -32,8 +35,39 @@ func _on_Timer_timeout():
 		$ShapesArea.add_child(active_shape)
 		active_shape.position = Vector2(4 * Global.grid, Global.grid)
 		has_active_shape = true
+		print("inac", Global.inactive.size(), Global.blocks_to_start_countdown)
+		if Global.inactive.size() >= Global.blocks_to_start_countdown and not countdown_started:
+			start_countdown_timer()
+			add_to_cried()
 	else:
 		move_down()
+
+func _on_CountdownTimer_timeout():
+	countdown_timer -= 1
+	print("_on_CountdownTimer_timeout", countdown_timer)
+	
+	if countdown_timer <= 0 and Global.has_cried.size() <= Global.max_crying:
+		# if the timer reach 0 and it's still less than max crying of the level, add more
+		add_to_cried()
+		start_countdown_timer()
+		
+func start_countdown_timer():
+	print("start")
+	countdown_started = true
+	countdown_timer = Global.delay
+	$CountdownTimer.start()
+	
+func add_to_cried():
+	var total_inactive = Global.inactive.size()
+	var selected_index = rnd.randi() % total_inactive
+	var selected_shape = Global.inactive[selected_index]
+	var selected_block = Global.inactive_blocks[selected_index]
+	
+	selected_block.start_countdown()
+	Global.has_cried.append(selected_shape)
+	Global.has_cried_blocks.append(selected_block)
+	
+	print("Choose random block", total_inactive, selected_index)
 
 func _on_StartButton_pressed():
 	Global.update_stage(1)
@@ -71,3 +105,4 @@ func play_wee_sound():
 
 func play_thud_sound():
 	$SFXThud.play()
+

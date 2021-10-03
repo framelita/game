@@ -12,7 +12,7 @@ var inactive_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
 var has_cried_blocks = [] # consist of the block function
 var points = 0
-var speed = 2
+var speed = 0.5 # in seconds
 var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
@@ -47,7 +47,9 @@ var max_crying = 5 # number of countdown
 var delay = 10 # seconds of each countdown
 var reaction_time = 10 # how long from cry to diw
 var target_rows = 5 # how many rows to clear
-var blocks_to_start_countdown = 3 # how many blocks before countdown start
+var blocks_in_shape = 4
+var shapes_to_start_countdown = 1 # change this to set how many shapes before countdown starts
+var blocks_to_start_countdown = shapes_to_start_countdown * blocks_in_shape
 
 func inactivate_shape():
 	emit_signal("inact_shape")
