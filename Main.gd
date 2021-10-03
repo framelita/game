@@ -35,6 +35,7 @@ func _on_Timer_timeout():
 		move_down()
 
 func _on_StartButton_pressed():
+	Global.update_stage(1)
 	$Timer.start()
 
 func move_left():
