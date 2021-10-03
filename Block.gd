@@ -199,7 +199,8 @@ func _on_TextureButton_pressed():
 	if timer > 0 and timer <= countdown_timer:
 		$ParticlesHeart.restart()
 		$Timer.stop()
-		Global.next_crying_block()
+		var new_position = get_parent().position + position
+		Global.next_crying_block(new_position)
 		stop_counting_down_animation()
 		timer = -1
 		$RichTextLabel.bbcode_text = str(timer)

@@ -6,6 +6,7 @@ signal update_stage
 signal restart_game
 signal start_game
 signal pause_game
+signal clear_stage
 signal game_over
 signal next_crying_block
 signal play_rotate_sound
@@ -18,11 +19,20 @@ var counting_down = [] # this refers to blocks that is counting down. consist of
 var counting_down_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
 var has_cried_blocks = [] # consist of the block function
+var countdown_indexes = { # which countdown is holding which block
+	"1": {},
+	"2": {},
+	"3": {},
+	"4": {},
+	"5": {}
+}
+
 var points = 0
 var speed = 1 # in seconds
 var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
+var delay_between_countdown = 1
 
 var stage_dictionary = { # change this to set the stage variables
 	1: {
@@ -113,6 +123,8 @@ func add_points():
 	points += 100
 	if points%100 == 0 and speed > .3:
 		speed -= .1
+	if points >= target_score:
+		clear_stage()
 	emit_signal("add_points")
 
 func clear_all_blocks():
@@ -156,8 +168,11 @@ func restart_game():
 	var _error = get_tree().reload_current_scene()
 	emit_signal("restart_game")
 	
+func clear_stage():
+	emit_signal("clear_stage")
+	
 func pause_game():
 	emit_signal("pause_game")
 	
-func next_crying_block():
-	emit_signal("next_crying_block")
+func next_crying_block(new_position):
+	emit_signal("next_crying_block", new_position)
