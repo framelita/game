@@ -12,23 +12,23 @@ var inactive_blocks = [] # consist of the block function
 var has_cried = [] # this refers to blocks that has already cried. consist of position x y
 var has_cried_blocks = [] # consist of the block function
 var points = 0
-var speed = 0.5 # in seconds
+var speed = 1 # in seconds
 var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
 
-var stage_dictionary = {
+var stage_dictionary = { # change this to set the stage variables
 	1: {
 		"max_crying": 5, # number of countdown
 		"delay": 10, # seconds of each countdown
 		"reaction_time": 10, # how long from cry to diw
-		"target_rows": 5 # how many rows to clear
+		"target_score": 500 # target score to complete the level
 	},
 	2: {
 		"max_crying": 5,
 		"delay": 10,
 		"reaction_time": 10,
-		"target_rows": 10
+		"target_score": 1000
 	},
 }
 
@@ -46,9 +46,9 @@ var stage = 0
 var max_crying = 5 # number of countdown
 var delay = 10 # seconds of each countdown
 var reaction_time = 10 # how long from cry to diw
-var target_rows = 5 # how many rows to clear
+var target_score = 500 # target score to complete the level
 var blocks_in_shape = 4
-var shapes_to_start_countdown = 1 # change this to set how many shapes before countdown starts
+var shapes_to_start_countdown = 3 # change this to set how many shapes before countdown starts
 var blocks_to_start_countdown = shapes_to_start_countdown * blocks_in_shape
 
 func inactivate_shape():
@@ -86,7 +86,7 @@ func update_stage_variables():
 		max_crying = stage_dictionary[stage]["max_crying"]
 		delay = stage_dictionary[stage]["delay"]
 		reaction_time = stage_dictionary[stage]["reaction_time"]
-		target_rows = stage_dictionary[stage]["target_rows"]
+		target_score = stage_dictionary[stage]["target_score"]
 	
 func restart_game():
 	speed = 1

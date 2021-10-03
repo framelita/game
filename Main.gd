@@ -15,6 +15,8 @@ var num:int = -1
 var next_num:int = 0
 var countdown_timer = 1
 var countdown_started = false
+var hold_down_timer = 0
+var hold_down = false
 
 func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
@@ -50,6 +52,8 @@ func _on_CountdownTimer_timeout():
 		add_to_cried()
 		start_countdown_timer()
 		
+	if points >= Global.
+		
 func start_countdown_timer():
 	countdown_started = true
 	countdown_timer = Global.delay
@@ -65,7 +69,6 @@ func add_to_cried():
 	selected_block.start_countdown()
 	Global.has_cried.append(selected_shape)
 	Global.has_cried_blocks.append(selected_block)
-	
 
 func _on_StartButton_pressed():
 	Global.update_stage(1)
