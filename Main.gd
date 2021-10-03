@@ -37,7 +37,7 @@ func _ready():
 func _on_Timer_timeout():
 	$Timer.wait_time = Global.speed
 	
-	if not has_active_shape:
+	if not has_active_shape and not Global.paused:
 		num = rnd.randi() % 7 if num == -1 else next_num
 		next_num = rnd.randi() % 7
 		$NextShapePanel/V/Control/Sprite.frame = next_num
@@ -82,7 +82,7 @@ func move_down():
 		$Timer.start()
 
 func _input(_event):
-	if active_shape:
+	if active_shape and not Global.paused:
 		if Input.is_action_just_pressed("ui_right"):
 			move_right()
 		if Input.is_action_just_pressed("ui_left"):
@@ -103,6 +103,10 @@ func play_thud_sound():
 	$SFXThud.play()
 
 func pause_game():
+	print("PAISED")
+	Global.paused = true
+	active_shape = null
+	has_active_shape = false
 	$Timer.stop()
 	$CountdownTriggerTimer.stop()
 	$CountdownTimer1.stop()
@@ -135,11 +139,13 @@ func hide_other_screen():
 	$Overlay/YouWon.hide()
 
 func game_over():
+	print("game_over")
 	Global.pause_game()
 	$SFXGameOver.play()
-	show_screen('GameOver')
+	show_screen('GameOver')	
 	
 func start_game():
+	Global.paused = false
 	hide_other_screen()
 	$Overlay.hide()
 	$Timer.start()
@@ -149,6 +155,7 @@ func start_game():
 	Global.update_stage(Global.stage + 1)
 	
 func clear_stage():
+	print("clear_stage")
 	Global.pause_game()
 	$SFXStageClear.play()
 	show_screen('StageClear')

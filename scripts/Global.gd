@@ -33,6 +33,7 @@ var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
 var delay_between_countdown = 1
+var paused = false
 
 var stage_dictionary = { # change this to set the stage variables
 	1: {
@@ -128,10 +129,21 @@ func add_points():
 	emit_signal("add_points")
 
 func clear_all_blocks():
+	for item in inactive_blocks:
+		item.destroy_block()
 	inactive.clear()
 	inactive_blocks.clear()
+	counting_down.clear()
+	counting_down_blocks.clear()
 	has_cried.clear()
 	has_cried_blocks.clear()
+	countdown_indexes = { # which countdown is holding which block
+		"1": {},
+		"2": {},
+		"3": {},
+		"4": {},
+		"5": {}
+	}
 	
 func update_stage(new_stage):
 	stage = new_stage
@@ -165,7 +177,7 @@ func restart_game():
 	speed = 1
 	points = 0
 	update_stage(1)
-	var _error = get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
 	emit_signal("restart_game")
 	
 func clear_stage():

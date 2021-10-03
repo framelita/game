@@ -16,8 +16,9 @@ func draw_shape(shape):
 		ind += 1
 		
 func rotate_it():
-	if not is_fixed:
-		rotate_shape()
+	if not Global.paused:
+		if not is_fixed:
+			rotate_shape()
 		
 func rotate_shape():
 	var can_rotate = true
@@ -40,28 +41,31 @@ func inactivate_it():
 			var _error = get_tree().reload_current_scene()
 
 func move_left():
-	if not is_fixed:
-		for ch in get_children():
-			if not ch.can_move_left():
-				return
-		position.x -= Global.grid
+	if not Global.paused:
+		if not is_fixed:
+			for ch in get_children():
+				if not ch.can_move_left():
+					return
+			position.x -= Global.grid
 
 func move_right():
-	if not is_fixed:
-		for ch in get_children():
-			if not ch.can_move_right():
-				return
-		position.x += Global.grid
+	if not Global.paused:
+		if not is_fixed:
+			for ch in get_children():
+				if not ch.can_move_right():
+					return
+			position.x += Global.grid
 
 func move_down():
-	if not create_position:
-		create_position = position
-	if not is_fixed:
-		for ch in get_children():
-			if not ch.can_move_down():
-				print("create position: %s e position: %s"%[create_position,position])
-				if create_position == position:
-					Global.game_over()
-				is_fixed = true
-				return
-		position.y += Global.grid
+	if not Global.paused:
+		if not create_position:
+			create_position = position
+		if not is_fixed:
+			for ch in get_children():
+				if not ch.can_move_down():
+					print("create position: %s e position: %s"%[create_position,position])
+					if create_position == position:
+						Global.game_over()
+					is_fixed = true
+					return
+			position.y += Global.grid
