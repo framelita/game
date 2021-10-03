@@ -15,8 +15,6 @@ var num:int = -1
 var next_num:int = 0
 var countdown_timer = 1
 var countdown_started = false
-var hold_down_timer = 0
-var hold_down = false
 
 func _ready():
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
@@ -100,10 +98,11 @@ func _input(_event):
 			move_right()
 		if Input.is_action_just_pressed("ui_left"):
 			move_left()
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_pressed("ui_down"):
 			move_down()
 		if Input.is_action_just_pressed("ui_up"):
 			active_shape.rotate_it()
+			
 
 func play_rotate_sound():
 	$SFXRotate.play()
@@ -159,4 +158,3 @@ func clear_stage():
 
 func next_crying_block():
 	pass
-	
