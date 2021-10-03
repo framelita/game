@@ -32,7 +32,6 @@ var speed = 1 # in seconds
 var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
-var delay_between_countdown = 1
 var paused = false
 
 var stage_dictionary = { # change this to set the stage variables
@@ -116,6 +115,7 @@ var target_score = 500 # target score to complete the level
 var blocks_in_shape = 4
 var shapes_to_start_countdown = 3 # change this to set how many shapes before countdown starts
 var blocks_to_start_countdown = shapes_to_start_countdown * blocks_in_shape
+var delay_between_countdown = 1
 
 func inactivate_shape():
 	emit_signal("inact_shape")

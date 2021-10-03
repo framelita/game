@@ -174,7 +174,7 @@ func start_countdown_timer(number):
 	
 func reset_countdown(n):
 	var number = str(n)
-	var random = rnd.randi() % (Global.delay / 2) + (Global.delay / 2)
+	var random = rnd.randi_range(Global.delay - 2, Global.delay + 2)
 	get_node("CountdownTimer" + number).wait_time = random
 	get_node("Label" + number).text = str(random)
 	
