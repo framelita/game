@@ -10,3 +10,4 @@ func _ready():
 	]
 	draw_shape()
 	rotate_position=1
+

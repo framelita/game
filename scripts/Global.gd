@@ -10,9 +10,30 @@ var inactive = []
 var inactive_blocks = []
 var points = 0
 var speed = 1
-var grid = 64
-var max_x = 640 - grid
-var max_y = 1280 - grid
+var grid = 32
+var max_x = 320 - grid
+var max_y = 640 - grid
+
+var stage_dictionary = {
+	1: {
+		"max_crying": 5, # number of countdown
+		"delay": 10, # seconds of each countdown
+		"reaction_time": 10, # how long from cry to diw
+		"target_rows": 5 # how many rows to clear
+	},
+	2: {
+		"max_crying": 5,
+		"delay": 10,
+		"reaction_time": 10,
+		"target_rows": 10
+	},
+}
+
+var stage = 0
+var max_crying = 5 # number of countdown
+var delay = 10 # seconds of each countdown
+var reaction_time = 10 # how long from cry to diw
+var target_rows = 5 # how many rows to clear
 
 func inactivate_shape():
 	emit_signal("inact_shape")

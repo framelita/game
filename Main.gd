@@ -34,6 +34,9 @@ func _on_Timer_timeout():
 	else:
 		move_down()
 
+func _on_StartButton_pressed():
+	$Timer.start()
+
 func move_left():
 	if active_block:
 		sh.move_left()
