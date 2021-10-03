@@ -52,7 +52,9 @@ func _on_CountdownTimer_timeout():
 		add_to_cried()
 		start_countdown_timer()
 		
-	if points >= Global.
+	if points >= Global.target_score:
+		pass
+		
 		
 func start_countdown_timer():
 	countdown_started = true
