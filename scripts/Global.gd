@@ -14,8 +14,6 @@ signal play_wee_sound
 signal play_thud_sound
 signal block_pressed
 signal block_released
-signal block_entered
-signal block_exited
 
 var inactive = [] # this refers to blocks that has already touch the ground. consist of position x y
 var inactive_blocks = [] # consist of the block function
@@ -202,9 +200,4 @@ func block_pressed():
 	
 func block_released():
 	emit_signal("block_released")
-	
-func block_entered():
-	emit_signal("block_entered")
-	
-func block_exited():
-	emit_signal("block_exited")
+

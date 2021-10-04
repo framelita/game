@@ -11,13 +11,10 @@ func _process(delta):
 	$CursorSprite.position = get_global_mouse_position()
 
 func block_pressed():
-	$CursorSprite.play('click')
+	print("block_pressed")
+	$CursorSprite.play("click")
 
 func block_released():
-	$CursorSprite.play('')
+	print("block_released")
+	$CursorSprite.play("default")
 	
-func block_entered():
-	$CursorSprite.play('hover')
-
-func block_exited():
-	$CursorSprite.play('')

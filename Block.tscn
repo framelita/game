@@ -345,7 +345,7 @@ centered = false
 
 [node name="SlimeFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 36 )
-frame = 18
+frame = 22
 playing = true
 centered = false
 
@@ -430,7 +430,5 @@ stream = ExtResource( 13 )
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]
-[connection signal="mouse_entered" from="TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="TextureButton" to="." method="_on_TextureButton_mouse_exited"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -237,8 +237,3 @@ func pause_game():
 	$SFXTick.stop()
 	$Timer.stop()
 
-func _on_TextureButton_mouse_entered():
-	Global.block_entered()
-
-func _on_TextureButton_mouse_exited():
-	Global.block_exited()
