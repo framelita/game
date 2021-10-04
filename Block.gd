@@ -165,7 +165,8 @@ func start_countdown():
 	$Timer.start()
 	
 func stop_counting_down_animation():
-	$AnimatedSprite.play(colour)
+	$SlimeBody.play(colour)
+	$SlimeFace.play()
 	$SFXTick.stop()
 	
 func reset_timer():
@@ -175,7 +176,8 @@ func reset_timer():
 
 func hide_all_sprites():
 	$TextureButton.hide()
-	$AnimatedSprite.hide()
+	$SlimeBody.hide()
+	$SlimeFace.hide()
 	$Sprite.hide()
 
 func _on_Timer_timeout():
@@ -184,12 +186,14 @@ func _on_Timer_timeout():
 	
 	if timer == countdown_timer - 1:
 		# start the blinking
-		$AnimatedSprite.play(colour + '-blink')
+		$SlimeBody.play(colour + '-blink')
+		$SlimeFace.play('angry')
 		$SFXTick.play()
 		
 	if timer <= animation_time:
 		# don't allow user to click anymore
-		$AnimatedSprite.play('cry')
+		$SlimeBody.play('cry')
+		$SlimeFace.play('cry')
 		$TextureButton.disabled = true
 		
 	if timer == 1:
@@ -220,11 +224,13 @@ func _on_TextureButton_pressed():
 func _on_TextureButton_button_down():
 	if timer > 0 and timer <= countdown_timer:
 		$SFXGiggle.play()
-		$AnimatedSprite.play(colour + '-click')
+		$SlimeBody.play(colour + '-click')
+		$SlimeFace.play('giggle')
 
 func _on_TextureButton_button_up():
 	if timer > 0 and timer <= countdown_timer:
-		$AnimatedSprite.play(colour)
+		$SlimeBody.play(colour)
+		$SlimeFace.play()
 
 func pause_game():
 	$SFXTick.stop()
