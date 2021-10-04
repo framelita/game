@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/fonts/story_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/graphics/story1.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/graphics/bg-tutorial.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/control.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/slime-tutorial.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/cursor-heart.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/cursor-click.png" type="Texture" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
@@ -38,8 +40,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 640, 380 ), Vector2( 645, 380 ), Vector2( 640, 380 ), Vector2( 635, 380 ) ]
+"values": [ Vector2( 640, 360 ), Vector2( 645, 360 ), Vector2( 640, 360 ), Vector2( 635, 360 ) ]
 }
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 24, 23 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 24, 23 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
 
 [node name="Story" type="Control"]
 anchor_right = 1.0
@@ -65,13 +83,16 @@ margin_bottom = 635.0
 rect_min_size = Vector2( 630, 160 )
 custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Phrases" type="Control" parent="."]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="Phrases"]
+[node name="Label1" type="Label" parent="Phrases"]
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
@@ -102,7 +123,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "Quantity is always better than quality right?"
+text = "They look down on slimes 'cause slimes are too common and there are too many of them."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,7 +132,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "Anyway, one thing to note, the slimes are very unstable."
+text = "But you know, quantity is always better than quality, right?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,12 +141,21 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "If you don't pet them in time when they are upset, they gonna cry and run away."
+text = "Anyway, one thing to note, the slimes are very unstable."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label7" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "If you don't pet them in time when they are upset, they gonna cry and run away."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="Phrases"]
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
@@ -151,13 +181,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Tutorial/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/CenterContainer"]
 margin_left = 376.0
-margin_top = 244.0
+margin_top = 220.0
 margin_right = 904.0
-margin_bottom = 475.0
+margin_bottom = 499.0
+
+[node name="Label" type="Label" parent="Tutorial/CenterContainer/VBoxContainer"]
+margin_right = 528.0
+margin_bottom = 231.0
 custom_fonts/font = ExtResource( 1 )
-text = "Use WASD to control the slimes.
+text = "Use WASD to control the slimes
 
 
 
@@ -165,15 +199,40 @@ text = "Use WASD to control the slimes.
 Click the slime when they get upset"
 align = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/CenterContainer/VBoxContainer"]
+margin_top = 235.0
+margin_right = 528.0
+margin_bottom = 255.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="StartButton" type="Button" parent="Tutorial/CenterContainer/VBoxContainer"]
+margin_left = 243.0
+margin_top = 259.0
+margin_right = 284.0
+margin_bottom = 279.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Start"
+
 [node name="Upset" type="AnimatedSprite" parent="Tutorial"]
-position = Vector2( 635, 380 )
+position = Vector2( 640, 360 )
 frames = SubResource( 3 )
 frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Upset"]
 anims/angry = SubResource( 4 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Tutorial"]
+position = Vector2( 680.471, 366.179 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 7 )
+frame = 3
+playing = true
+
 [node name="Sprite" type="Sprite" parent="Tutorial"]
-position = Vector2( 531.935, 146.13 )
+position = Vector2( 570, 90 )
 texture = ExtResource( 5 )
 centered = false
+
+[connection signal="pressed" from="Tutorial/CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

@@ -192,6 +192,7 @@ func _on_Timer_timeout():
 		$Control/SlimeBody.play('cry')
 		$Control/SlimeFace.play('cry')
 		$Control/AnimationPlayer.stop()
+		$Control/AnimationPlayer.seek(0, true)
 		$TextureButton.disabled = true
 		
 	if timer == 1:
@@ -225,6 +226,7 @@ func _on_TextureButton_button_down():
 		$Control/SlimeBody.play(colour + '-click')
 		$Control/SlimeFace.play('giggle')
 		$Control/AnimationPlayer.stop()
+		$Control/AnimationPlayer.seek(0, true)
 		Global.block_pressed()
 
 func _on_TextureButton_button_up():

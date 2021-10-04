@@ -8,6 +8,7 @@ signal start_game
 signal pause_game
 signal clear_stage
 signal game_over
+signal show_story
 signal next_crying_block
 signal play_rotate_sound
 signal play_wee_sound
@@ -36,6 +37,8 @@ var max_y = 640 - grid
 var paused = false
 var game_over = false
 var has_played_before = false
+var has_started_game = false
+var has_seen_tutorial = false
 
 var stage_dictionary = { # change this to set the stage variables
 	1: {
@@ -201,3 +204,5 @@ func block_pressed():
 func block_released():
 	emit_signal("block_released")
 
+func show_story():
+	emit_signal("show_story")

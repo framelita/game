@@ -7,6 +7,9 @@ onready var shape4 = preload("res://Shape4.tscn")
 onready var shape5 = preload("res://Shape5.tscn")
 onready var shape6 = preload("res://Shape6.tscn")
 onready var shape7 = preload("res://Shape7.tscn")
+var arrow = load("res://assets/graphics/cursor-default.png")
+var heart = load("res://assets/graphics/cursor-heart.png")
+var hand = load("res://assets/graphics/cursor-click.png")
 var shapes = []
 var active_shape
 var has_active_shape = false
@@ -21,6 +24,9 @@ var countdown_timer5 = 0
 var countdown_started = false
 
 func _ready():
+	Input.set_custom_mouse_cursor(arrow)
+	Input.set_custom_mouse_cursor(heart, Input.CURSOR_POINTING_HAND)
+	
 	shapes = [shape1,shape2,shape3,shape4,shape5,shape6,shape7]
 	rnd.randomize()
 	var _error = Global.connect("play_rotate_sound", self, "play_rotate_sound")
@@ -32,9 +38,11 @@ func _ready():
 	var _error7 = Global.connect("game_over", self, "game_over")
 	var _error8 = Global.connect("next_crying_block", self, "next_crying_block")
 	var _error9 = Global.connect("clear_stage", self, "clear_stage")
+	var _error10 = Global.connect("show_story", self, "show_story")
 	
 	# for when user click restart
 	if Global.has_played_before:
+		$Story.hide()
 		start_game()
 
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
@@ -107,6 +115,7 @@ func play_thud_sound():
 	$SFXThud.play()
 
 func pause_game():
+	Input.set_custom_mouse_cursor(heart, Input.CURSOR_POINTING_HAND)
 	print("PAISED")
 	Global.paused = true
 	active_shape = null
@@ -127,15 +136,17 @@ func show_screen(screen):
 	$Overlay/YouWon.hide()
 	
 	if screen == 'Opening':
-		$Overlay/MarginContainer/StartButton.text = 'START'
+		$Overlay/CenterContainer/VBoxContainer/Label.text = ""
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'START'
 	elif screen == 'StageClear':
-		$Overlay/MarginContainer/StartButton.text = 'NEXT STAGE'
+		$Overlay/CenterContainer/VBoxContainer/Label.text = "Score: " + str(Global.points)
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'NEXT STAGE'
 	else:
-		$Overlay/MarginContainer/StartButton.text = 'RESTART'
+		$Overlay/CenterContainer/VBoxContainer/Label.text = "Score: " + str(Global.points)
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'RESTART'
 	
 	$Overlay.show()
 	$Overlay.get_node(screen).show()
-	$Overlay/MarginContainer.show()
 	
 func hide_other_screen():
 	$Overlay/Opening.hide()
@@ -150,6 +161,7 @@ func game_over():
 	show_screen('GameOver')	
 	
 func start_game():
+	# Input.set_custom_mouse_cursor(hand, Input.CURSOR_POINTING_HAND)
 	Global.paused = false
 	hide_other_screen()
 	$Overlay.hide()
@@ -237,4 +249,5 @@ func _on_CountdownTimer5_timeout():
 		add_to_cried("5")
 		start_countdown_timer(5)
 
-
+func show_story():
+	$Story.show()

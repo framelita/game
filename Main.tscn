@@ -15,26 +15,26 @@
 [ext_resource path="res://assets/sounds/mixkit-negative-guitar-tone-2324.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/graphics/bg-test.png" type="Texture" id=15]
-[ext_resource path="res://Cursor.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Story.tscn" type="PackedScene" id=17]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-rect_min_size = Vector2( 1280, 720 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Bg" type="Sprite" parent="."]
+position = Vector2( -1.25992, 0 )
 texture = ExtResource( 15 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ShapesArea" type="Sprite" parent="."]
-position = Vector2( 392.65, 53.0609 )
+position = Vector2( 480, 40 )
 texture = ExtResource( 1 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="ShapesArea"]
 texture = ExtResource( 3 )
@@ -44,10 +44,10 @@ offset = Vector2( -20, -20 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="NextShapePanel" parent="." instance=ExtResource( 4 )]
-position = Vector2( 749.851, 211.876 )
+position = Vector2( 839.648, 51.364 )
 
 [node name="Points_Panel" parent="." instance=ExtResource( 5 )]
-position = Vector2( 757.548, 67.3477 )
+position = Vector2( 314.175, 55.0006 )
 
 [node name="AudioFatGangster" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -90,10 +90,10 @@ stream = ExtResource( 12 )
 stream = ExtResource( 13 )
 
 [node name="MaxCrying" type="Label" parent="."]
-margin_left = 134.6
-margin_top = 249.059
-margin_right = 310.6
-margin_bottom = 273.059
+margin_left = 87.9829
+margin_top = 358.672
+margin_right = 263.983
+margin_bottom = 382.672
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Max crying: "
@@ -102,10 +102,10 @@ __meta__ = {
 }
 
 [node name="Delay" type="Label" parent="."]
-margin_left = 132.659
-margin_top = 291.178
-margin_right = 278.659
-margin_bottom = 315.178
+margin_left = 86.0419
+margin_top = 400.791
+margin_right = 232.042
+margin_bottom = 424.791
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Delay:"
@@ -114,10 +114,10 @@ __meta__ = {
 }
 
 [node name="ReactionTime" type="Label" parent="."]
-margin_left = 132.313
-margin_top = 335.238
-margin_right = 344.313
-margin_bottom = 359.238
+margin_left = 85.6959
+margin_top = 444.851
+margin_right = 297.696
+margin_bottom = 468.851
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Reaction Time:"
@@ -126,10 +126,10 @@ __meta__ = {
 }
 
 [node name="TargetScore" type="Label" parent="."]
-margin_left = 127.897
-margin_top = 367.119
-margin_right = 334.897
-margin_bottom = 391.119
+margin_left = 81.2799
+margin_top = 476.732
+margin_right = 288.28
+margin_bottom = 500.732
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Target Score:"
@@ -138,10 +138,10 @@ __meta__ = {
 }
 
 [node name="CD" type="Label" parent="."]
-margin_left = 135.194
-margin_top = 141.654
-margin_right = 300.194
-margin_bottom = 215.654
+margin_left = 97.3964
+margin_top = 55.9794
+margin_right = 262.396
+margin_bottom = 129.979
 custom_fonts/font = ExtResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "CD:
@@ -161,7 +161,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cursor" parent="." instance=ExtResource( 16 )]
+[node name="Story" parent="." instance=ExtResource( 17 )]
+visible = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="CountdownTriggerTimer" to="." method="_on_CountdownTriggerTimer_timeout"]

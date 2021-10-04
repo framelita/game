@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cursor-click.png-d2d48669e55a935ce2ef0cd4ad5da73b.stex"
+path="res://.import/cursor-heart.png-15f0c71e6c196ed05e0cb68004f2f640.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cursor-click.png"
-dest_files=[ "res://.import/cursor-click.png-d2d48669e55a935ce2ef0cd4ad5da73b.stex" ]
+source_file="res://assets/graphics/cursor-heart.png"
+dest_files=[ "res://.import/cursor-heart.png-15f0c71e6c196ed05e0cb68004f2f640.stex" ]
 
 [params]
 
