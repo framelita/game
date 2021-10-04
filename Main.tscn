@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/graphics/bg-shape.png" type="Texture" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -15,7 +15,13 @@
 [ext_resource path="res://assets/sounds/mixkit-negative-guitar-tone-2324.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/graphics/bg-test.png" type="Texture" id=15]
+[ext_resource path="res://assets/graphics/slime-blue-300.png" type="Texture" id=16]
 [ext_resource path="res://Story.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/fonts/Kenney Pixel.ttf" type="DynamicFontData" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 18 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -44,10 +50,10 @@ offset = Vector2( -20, -20 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="NextShapePanel" parent="." instance=ExtResource( 4 )]
-position = Vector2( 839.648, 51.364 )
+position = Vector2( 802, 18 )
 
 [node name="Points_Panel" parent="." instance=ExtResource( 5 )]
-position = Vector2( 314.175, 55.0006 )
+position = Vector2( 220, 19 )
 
 [node name="AudioFatGangster" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -69,6 +75,27 @@ stream = ExtResource( 9 )
 stream = ExtResource( 10 )
 volume_db = 5.0
 
+[node name="Stage" type="TextureRect" parent="."]
+margin_left = 801.088
+margin_top = 602.164
+margin_right = 897.088
+margin_bottom = 698.164
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Stage"]
+margin_right = 94.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 1 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CountdownTriggerTimer" type="Timer" parent="."]
 
 [node name="CountdownTimer1" type="Timer" parent="."]
@@ -81,8 +108,6 @@ volume_db = 5.0
 
 [node name="CountdownTimer5" type="Timer" parent="."]
 
-[node name="Overlay" parent="." instance=ExtResource( 11 )]
-
 [node name="SFXStageClear" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
@@ -90,6 +115,7 @@ stream = ExtResource( 12 )
 stream = ExtResource( 13 )
 
 [node name="MaxCrying" type="Label" parent="."]
+visible = false
 margin_left = 87.9829
 margin_top = 358.672
 margin_right = 263.983
@@ -102,6 +128,7 @@ __meta__ = {
 }
 
 [node name="Delay" type="Label" parent="."]
+visible = false
 margin_left = 86.0419
 margin_top = 400.791
 margin_right = 232.042
@@ -114,6 +141,7 @@ __meta__ = {
 }
 
 [node name="ReactionTime" type="Label" parent="."]
+visible = false
 margin_left = 85.6959
 margin_top = 444.851
 margin_right = 297.696
@@ -126,6 +154,7 @@ __meta__ = {
 }
 
 [node name="TargetScore" type="Label" parent="."]
+visible = false
 margin_left = 81.2799
 margin_top = 476.732
 margin_right = 288.28
@@ -138,6 +167,7 @@ __meta__ = {
 }
 
 [node name="CD" type="Label" parent="."]
+visible = false
 margin_left = 97.3964
 margin_top = 55.9794
 margin_right = 262.396
@@ -151,6 +181,7 @@ __meta__ = {
 }
 
 [node name="GeneralTimer" type="Label" parent="."]
+visible = false
 margin_left = 204.0
 margin_top = 66.0
 margin_right = 315.0
@@ -160,6 +191,8 @@ text = "Time: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Overlay" parent="." instance=ExtResource( 11 )]
 
 [node name="Story" parent="." instance=ExtResource( 17 )]
 visible = false

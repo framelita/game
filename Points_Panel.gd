@@ -9,5 +9,6 @@ func add_points():
 	$RichTextLabel.bbcode_text = str(Global.points).pad_zeros(6)
 	
 func update_stage():
-	$GoalLabel.bbcode_text = "Goal: " + str(Global.target_score)
-	$StageLabel.bbcode_text = "Stage: " + str(Global.stage)
+	$ScoreLabel.text = str(Global.points)
+	$NextStageLabel.text = str(Global.target_score)
+	$Stage/Label.text = str(Global.stage)

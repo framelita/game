@@ -54,8 +54,8 @@ func _on_Timer_timeout():
 	if not has_active_shape and not Global.paused:
 		num = rnd.randi() % 7 if num == -1 else next_num
 		next_num = rnd.randi() % 7
-		$NextShapePanel/V/Control/Sprite.frame = next_num
-		$NextShapePanel/V/Control.show()
+		$NextShapePanel/T/V/Control/Sprite.frame = next_num
+		$NextShapePanel/T/V/Control.show()
 		active_shape = shapes[num].instance()
 		$ShapesArea.add_child(active_shape)
 		active_shape.position = Vector2(4 * Global.grid, Global.grid)
@@ -129,7 +129,7 @@ func pause_game():
 	$CountdownTimer3.stop()
 	$CountdownTimer4.stop()
 	$CountdownTimer5.stop()
-	$NextShapePanel/V/Control.hide()
+	$NextShapePanel/T/V/Constrol.hide()
 	
 func show_screen(screen):
 	$Overlay/Opening.hide()
@@ -176,6 +176,7 @@ func start_game():
 	$Delay.text = "Delay: " + str(Global.delay)
 	$ReactionTime.text = "ReactionTime: " + str(Global.reaction_time)
 	$TargetScore.text = "TargetScore: " + str(Global.target_score)
+	$Stage/Label.text = str(Global.stage)
 	
 func clear_stage():
 	print("clear_stage")

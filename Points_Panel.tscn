@@ -1,12 +1,46 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Points_Panel.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/graphics/next-stage.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/score.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Kenney Pixel.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/graphics/slime-blue-300.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 5 )
 
 [node name="Points_Panel" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_right = 256.0
+margin_bottom = 256.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 190.0
+margin_right = 256.0
+margin_bottom = 446.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 0.594604
 margin_right = 305.595
 margin_bottom = 38.0
@@ -17,23 +51,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StageLabel" type="RichTextLabel" parent="."]
-margin_top = 42.0
-margin_right = 184.0
-margin_bottom = 78.0
-custom_fonts/normal_font = ExtResource( 2 )
-text = "Stage:"
+[node name="NextStageLabel" type="Label" parent="."]
+margin_left = 49.9966
+margin_top = 271.236
+margin_right = 208.997
+margin_bottom = 307.236
+rect_pivot_offset = Vector2( 137, 36 )
+custom_fonts/font = SubResource( 1 )
+text = "1300"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoalLabel" type="RichTextLabel" parent="."]
-margin_left = 1.18921
-margin_top = 86.0007
-margin_right = 185.189
-margin_bottom = 122.001
-custom_fonts/normal_font = ExtResource( 2 )
-text = "Goal:"
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 47.0
+margin_top = 79.0
+margin_right = 211.0
+margin_bottom = 157.0
+rect_pivot_offset = Vector2( 137, 36 )
+custom_fonts/font = SubResource( 2 )
+text = "0000"
+align = 2
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Stage" type="TextureRect" parent="."]
+visible = false
+margin_left = 188.357
+margin_top = 146.238
+margin_right = 284.357
+margin_bottom = 242.238
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Stage"]
+margin_right = 94.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 3 )
+text = "1"
+align = 1
+valign = 1
