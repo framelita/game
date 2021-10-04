@@ -5,4 +5,7 @@ func _ready():
 
 func _on_StartButton_pressed():
 	$SFXTap.play()
-	Global.start_game()
+	if Global.game_over:
+		Global.restart_game()
+	else:
+		Global.start_game()

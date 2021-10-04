@@ -32,6 +32,7 @@ var grid = 32
 var max_x = 320 - grid
 var max_y = 640 - grid
 var paused = false
+var game_over = false
 
 var stage_dictionary = { # change this to set the stage variables
 	1: {
@@ -174,6 +175,7 @@ func restart_game():
 	game_time = 0
 	speed = 1
 	points = 0
+	game_over = false
 	update_stage(0)
 	get_tree().reload_current_scene()
 	emit_signal("restart_game")
