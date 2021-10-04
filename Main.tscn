@@ -88,67 +88,61 @@ stream = ExtResource( 12 )
 [node name="SFXGameOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 
-[node name="Label1" type="Label" parent="."]
-margin_left = 272.0
-margin_top = 248.0
-margin_right = 354.0
-margin_bottom = 272.0
+[node name="MaxCrying" type="Label" parent="."]
+margin_left = 134.6
+margin_top = 249.059
+margin_right = 310.6
+margin_bottom = 273.059
 custom_fonts/font = ExtResource( 14 )
-text = "1"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Max crying: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="."]
-margin_left = 273.26
-margin_top = 288.317
-margin_right = 355.26
-margin_bottom = 312.317
+[node name="Delay" type="Label" parent="."]
+margin_left = 132.659
+margin_top = 291.178
+margin_right = 278.659
+margin_bottom = 315.178
 custom_fonts/font = ExtResource( 14 )
-text = "1"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Delay:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="."]
-margin_left = 275.78
-margin_top = 331.155
-margin_right = 357.78
-margin_bottom = 355.155
+[node name="ReactionTime" type="Label" parent="."]
+margin_left = 132.313
+margin_top = 335.238
+margin_right = 344.313
+margin_bottom = 359.238
 custom_fonts/font = ExtResource( 14 )
-text = "1"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Reaction Time:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label4" type="Label" parent="."]
-margin_left = 274.52
-margin_top = 365.173
-margin_right = 356.52
-margin_bottom = 389.173
+[node name="TargetScore" type="Label" parent="."]
+margin_left = 127.897
+margin_top = 367.119
+margin_right = 334.897
+margin_bottom = 391.119
 custom_fonts/font = ExtResource( 14 )
-text = "1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label5" type="Label" parent="."]
-margin_left = 271.52
-margin_top = 403.931
-margin_right = 353.52
-margin_bottom = 427.931
-custom_fonts/font = ExtResource( 14 )
-text = "1"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Target Score:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CD" type="Label" parent="."]
-margin_left = 203.0
-margin_top = 130.0
-margin_right = 368.0
-margin_bottom = 204.0
+margin_left = 135.194
+margin_top = 141.654
+margin_right = 300.194
+margin_bottom = 215.654
 custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "CD:
 Has Cried:"
 __meta__ = {

@@ -152,6 +152,10 @@ func start_game():
 	has_active_shape = false
 	countdown_started = false
 	Global.update_stage(Global.stage + 1)
+	$MaxCrying.text = "Max Crying: " + str(Global.max_crying)
+	$Delay.text = "Delay: " + str(Global.delay)
+	$ReactionTime.text = "ReactionTime: " + str(Global.reaction_time)
+	$TargetScore.text = "TargetScore: " + str(Global.target_score)
 	
 func clear_stage():
 	print("clear_stage")
@@ -178,7 +182,6 @@ func reset_countdown(n):
 	var number = str(n)
 	var random = rnd.randi_range(Global.delay - 2, Global.delay + 2)
 	get_node("CountdownTimer" + number).wait_time = random
-	get_node("Label" + number).text = str(random)
 
 var cd_index = 0
 
