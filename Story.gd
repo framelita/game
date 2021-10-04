@@ -13,12 +13,12 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_released("ui_accept") or Input.is_action_just_released("left_click"):
-		print("startedf", Global.has_started_game, current_phrase)
+		# print("startedf", Global.has_started_game, current_phrase)
 		if not Global.has_seen_tutorial and Global.has_started_game: 
 			next_phrase()
 
 func next_phrase():
-	print("current phrase is", current_phrase)
+	# print("current phrase is", current_phrase)
 	if current_phrase < total_phrases:
 		$BG/RichTextLabel.bbcode_text = $Phrases.get_children()[current_phrase].text
 		current_phrase += 1
@@ -38,4 +38,5 @@ func _on_StartButton_pressed():
 	$Tutorial.hide()
 	$Tutorial/Upset/AnimationPlayer.stop()
 	hide()
+	Global.has_seen_tutorial = true
 	Global.start_game()

@@ -128,8 +128,6 @@ func inactivate_shape():
 
 func add_points():
 	points += 100
-	if points%100 == 0 and speed > .3:
-		speed -= .1
 	if points >= target_score:
 		clear_stage()
 	emit_signal("add_points")
@@ -152,6 +150,9 @@ func clear_all_blocks():
 	
 func update_stage(new_stage):
 	stage = new_stage
+	var reduced_speed = .1 * (new_stage - 1)
+	var new_speed = 1 - reduced_speed
+	speed = new_speed if new_speed > .3 else .3
 	update_stage_variables()
 	clear_all_blocks()
 	emit_signal("update_stage")

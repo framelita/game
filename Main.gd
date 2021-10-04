@@ -191,7 +191,8 @@ func next_crying_block(new_position):
 				reset_countdown(index)
 				start_countdown_timer(index)
 	var block_index = Global.counting_down.find(new_position)
-	Global.counting_down.remove(block_index)
+	if block_index >= 0:
+		Global.counting_down.remove(block_index)
 
 func start_countdown_timer(number):
 	get_node("CountdownTimer" + str(number)).start()

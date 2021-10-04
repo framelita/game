@@ -218,7 +218,8 @@ text = "Start"
 [node name="Upset" type="AnimatedSprite" parent="Tutorial"]
 position = Vector2( 640, 360 )
 frames = SubResource( 3 )
-frame = 7
+frame = 4
+playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Upset"]
 anims/angry = SubResource( 4 )
@@ -227,7 +228,6 @@ anims/angry = SubResource( 4 )
 position = Vector2( 680.471, 366.179 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 3
 playing = true
 
 [node name="Sprite" type="Sprite" parent="Tutorial"]
