@@ -22,6 +22,7 @@ var countdown_timer3 = 0
 var countdown_timer4 = 0
 var countdown_timer5 = 0
 var countdown_started = false
+var cd_index = 0
 
 func _ready():
 	Input.set_custom_mouse_cursor(arrow)
@@ -165,6 +166,7 @@ func game_over():
 func start_game():
 	# Input.set_custom_mouse_cursor(hand, Input.CURSOR_POINTING_HAND)
 	Global.paused = false
+	cd_index = 0
 	hide_other_screen()
 	$Overlay.hide()
 	$Timer.start()
@@ -185,7 +187,7 @@ func clear_stage():
 	show_screen('StageClear')
 
 func next_crying_block(new_position):
-	print("next_crying_block", new_position)
+	# print("next_crying_block", new_position)
 	for index in Global.countdown_indexes:
 		var block = Global.countdown_indexes[index]
 		if block:
@@ -205,7 +207,6 @@ func reset_countdown(n):
 	var random = rnd.randi_range(Global.delay - 2, Global.delay + 2)
 	get_node("CountdownTimer" + number).wait_time = random
 
-var cd_index = 0
 
 func _on_CountdownTriggerTimer_timeout():
 	Global.game_time += 1
