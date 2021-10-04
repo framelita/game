@@ -373,6 +373,8 @@ centered = false
 
 [node name="SlimeFace" type="AnimatedSprite" parent="Control"]
 frames = SubResource( 41 )
+frame = 23
+playing = true
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]

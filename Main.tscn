@@ -115,6 +115,7 @@ stream = ExtResource( 12 )
 stream = ExtResource( 13 )
 
 [node name="MaxCrying" type="Label" parent="."]
+visible = false
 margin_left = 87.9829
 margin_top = 358.672
 margin_right = 263.983
@@ -127,6 +128,7 @@ __meta__ = {
 }
 
 [node name="Delay" type="Label" parent="."]
+visible = false
 margin_left = 86.0419
 margin_top = 400.791
 margin_right = 232.042
@@ -139,6 +141,7 @@ __meta__ = {
 }
 
 [node name="ReactionTime" type="Label" parent="."]
+visible = false
 margin_left = 85.6959
 margin_top = 444.851
 margin_right = 297.696
@@ -151,6 +154,7 @@ __meta__ = {
 }
 
 [node name="TargetScore" type="Label" parent="."]
+visible = false
 margin_left = 81.2799
 margin_top = 476.732
 margin_right = 288.28
@@ -163,6 +167,7 @@ __meta__ = {
 }
 
 [node name="CD" type="Label" parent="."]
+visible = false
 margin_left = 97.3964
 margin_top = 55.9794
 margin_right = 262.396
@@ -176,6 +181,7 @@ __meta__ = {
 }
 
 [node name="GeneralTimer" type="Label" parent="."]
+visible = false
 margin_left = 204.0
 margin_top = 66.0
 margin_right = 315.0
