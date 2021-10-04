@@ -225,8 +225,10 @@ func _on_TextureButton_button_down():
 		$SFXGiggle.play()
 		$SlimeBody.play(colour + '-click')
 		$SlimeFace.play('giggle')
+		Global.block_pressed()
 
 func _on_TextureButton_button_up():
+	Global.block_released()
 	if timer > 0 and timer <= countdown_timer:
 		$SlimeBody.play(colour)
 		$SlimeFace.play()
@@ -235,4 +237,8 @@ func pause_game():
 	$SFXTick.stop()
 	$Timer.stop()
 
+func _on_TextureButton_mouse_entered():
+	Global.block_entered()
 
+func _on_TextureButton_mouse_exited():
+	Global.block_exited()
