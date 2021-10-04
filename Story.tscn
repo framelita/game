@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/fonts/story_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/graphics/story1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/graphics/slime-tutorial.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/cursor-heart.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/cursor-click.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
@@ -165,7 +166,6 @@ __meta__ = {
 }
 
 [node name="Tutorial" type="TextureRect" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 4 )
@@ -183,9 +183,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/CenterContainer"]
 margin_left = 376.0
-margin_top = 220.0
+margin_top = 215.0
 margin_right = 904.0
-margin_bottom = 499.0
+margin_bottom = 504.0
 
 [node name="Label" type="Label" parent="Tutorial/CenterContainer/VBoxContainer"]
 margin_right = 528.0
@@ -206,19 +206,20 @@ margin_bottom = 255.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="StartButton" type="Button" parent="Tutorial/CenterContainer/VBoxContainer"]
-margin_left = 243.0
+margin_left = 185.0
 margin_top = 259.0
-margin_right = 284.0
-margin_bottom = 279.0
+margin_right = 343.0
+margin_bottom = 289.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Start"
+custom_fonts/font = ExtResource( 9 )
+text = "Start Catching"
 
 [node name="Upset" type="AnimatedSprite" parent="Tutorial"]
 position = Vector2( 640, 360 )
 frames = SubResource( 3 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Upset"]

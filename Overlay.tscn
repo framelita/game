@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/graphics/stage-clear.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/stage-clear-bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/graphics/you-won.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/game-over.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/opening.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/game-over-bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/main-bg.png" type="Texture" id=4]
 [ext_resource path="res://Overlay.gd" type="Script" id=5]
 [ext_resource path="res://assets/sounds/mixkit-game-ball-tap-2073.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/fonts/story_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/fonts/Dynamic.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/fonts/Kenney Pixel.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 9 )
 
 [node name="Overlay" type="Control"]
 anchor_right = 1.0
@@ -47,33 +53,46 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 490.0
-margin_top = 298.0
-margin_right = 790.0
-margin_bottom = 422.0
-rect_min_size = Vector2( 300, 100 )
+margin_left = 390.0
+margin_top = 234.0
+margin_right = 890.0
+margin_bottom = 486.0
+rect_min_size = Vector2( 500, 100 )
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 94.0
+margin_right = 500.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 60 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 300.0
-margin_bottom = 36.0
+margin_top = 158.0
+margin_right = 500.0
+margin_bottom = 194.0
 custom_fonts/font = ExtResource( 7 )
 align = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 300.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 60 )
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 198.0
+margin_right = 500.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 20 )
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_left = 125.0
-margin_top = 104.0
-margin_right = 175.0
-margin_bottom = 124.0
+margin_left = 216.0
+margin_top = 222.0
+margin_right = 284.0
+margin_bottom = 252.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "START"
+custom_fonts/font = ExtResource( 8 )
+text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }

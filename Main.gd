@@ -40,6 +40,8 @@ func _ready():
 	var _error9 = Global.connect("clear_stage", self, "clear_stage")
 	var _error10 = Global.connect("show_story", self, "show_story")
 	
+	$Story/Tutorial.hide()
+	
 	# for when user click restart
 	if Global.has_played_before:
 		$Story.hide()
@@ -137,13 +139,13 @@ func show_screen(screen):
 	
 	if screen == 'Opening':
 		$Overlay/CenterContainer/VBoxContainer/Label.text = ""
-		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'START'
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'Start Game'
 	elif screen == 'StageClear':
 		$Overlay/CenterContainer/VBoxContainer/Label.text = "Score: " + str(Global.points)
-		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'NEXT STAGE'
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'Next Stage'
 	else:
 		$Overlay/CenterContainer/VBoxContainer/Label.text = "Score: " + str(Global.points)
-		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'RESTART'
+		$Overlay/CenterContainer/VBoxContainer/StartButton.text = 'Restart Game'
 	
 	$Overlay.show()
 	$Overlay.get_node(screen).show()
