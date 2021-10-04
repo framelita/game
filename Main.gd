@@ -129,7 +129,7 @@ func pause_game():
 	$CountdownTimer3.stop()
 	$CountdownTimer4.stop()
 	$CountdownTimer5.stop()
-	$NextShapePanel/T/V/Constrol.hide()
+	$NextShapePanel/T/V/Control.hide()
 	
 func show_screen(screen):
 	$Overlay/Opening.hide()

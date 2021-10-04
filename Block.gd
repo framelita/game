@@ -2,7 +2,7 @@ extends Node2D
 
 var is_active = false
 var timer = -1
-var animation_time = 3 # for crying animation
+var animation_time = 2 # for crying animation
 var countdown_timer = Global.reaction_time + animation_time
 var colour # colour will be set from Shape0
 

@@ -58,7 +58,7 @@ margin_right = 208.997
 margin_bottom = 307.236
 rect_pivot_offset = Vector2( 137, 36 )
 custom_fonts/font = SubResource( 1 )
-text = "1300"
+text = "0"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -71,7 +71,7 @@ margin_right = 211.0
 margin_bottom = 157.0
 rect_pivot_offset = Vector2( 137, 36 )
 custom_fonts/font = SubResource( 2 )
-text = "0000"
+text = "0"
 align = 2
 valign = 1
 autowrap = true
