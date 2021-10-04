@@ -12,7 +12,7 @@ func draw_shape(shape):
 	for ch in get_children():
 		ch.position = rotation_matrix[rotate_position][ind]
 		ch.colour = colour
-		ch.get_node("SlimeBody").play(colour)
+		ch.get_node("Control/SlimeBody").play(colour)
 		ind += 1
 		
 func rotate_it():

@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/story_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/graphics/story1.png" type="Texture" id=2]
+[ext_resource path="res://Story.gd" type="Script" id=3]
+[ext_resource path="res://assets/graphics/bg-tutorial.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/control.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/slime-tutorial.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 1 ), SubResource( 2 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "angry"
+length = 0.133333
+loop = true
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 380 ), Vector2( 645, 380 ), Vector2( 640, 380 ), Vector2( 635, 380 ) ]
+}
+
+[node name="Story" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG"]
+margin_left = 555.0
+margin_top = 475.0
+margin_right = 1185.0
+margin_bottom = 635.0
+rect_min_size = Vector2( 630, 160 )
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+
+[node name="Phrases" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Hi, I'm a Slime Tamer."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "What am I doing you asked?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "I am currently trying to catch these slimes to prove that I am better than those dragon tamer."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Quantity is always better than quality right?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Anyway, one thing to note, the slimes are very unstable."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "If you don't pet them in time when they are upset, they gonna cry and run away."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Phrases"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Ok. Let's start catching them!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tutorial" type="TextureRect" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Tutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1280, 720 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tutorial/CenterContainer"]
+margin_left = 376.0
+margin_top = 244.0
+margin_right = 904.0
+margin_bottom = 475.0
+custom_fonts/font = ExtResource( 1 )
+text = "Use WASD to control the slimes.
+
+
+
+
+Click the slime when they get upset"
+align = 1
+
+[node name="Upset" type="AnimatedSprite" parent="Tutorial"]
+position = Vector2( 635, 380 )
+frames = SubResource( 3 )
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Upset"]
+anims/angry = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Tutorial"]
+position = Vector2( 531.935, 146.13 )
+texture = ExtResource( 5 )
+centered = false
