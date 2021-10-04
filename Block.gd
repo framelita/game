@@ -97,7 +97,7 @@ func check_full_line():
 		shift_blocks(blocks_to_shift)
 		
 func destroy_line(indexes):
-	Global.add_points()
+	Global.add_points(100)
 	Global.play_wee_sound()
 	stop_counting_down_animation()
 	var line_vals = indexes
@@ -211,6 +211,7 @@ func _on_TextureButton_pressed():
 	# only show event when the timer is between 0 and the coutndown timer
 	if timer > 0 and timer <= countdown_timer:
 		$ParticlesHeart.restart()
+		Global.add_points(5)
 		$Timer.stop()
 		var new_position = get_parent().position + position
 		Global.next_crying_block(new_position)

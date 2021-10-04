@@ -126,8 +126,8 @@ var delay_between_countdown = 1
 func inactivate_shape():
 	emit_signal("inact_shape")
 
-func add_points():
-	points += 100
+func add_points(point_to_add):
+	points += point_to_add
 	if points >= target_score:
 		clear_stage()
 	emit_signal("add_points")
