@@ -45,6 +45,7 @@ func _on_Timer_timeout():
 		num = rnd.randi() % 7 if num == -1 else next_num
 		next_num = rnd.randi() % 7
 		$NextShapePanel/V/Control/Sprite.frame = next_num
+		$NextShapePanel/V/Control.show()
 		active_shape = shapes[num].instance()
 		$ShapesArea.add_child(active_shape)
 		active_shape.position = Vector2(4 * Global.grid, Global.grid)
@@ -117,6 +118,7 @@ func pause_game():
 	$CountdownTimer3.stop()
 	$CountdownTimer4.stop()
 	$CountdownTimer5.stop()
+	$NextShapePanel/V/Control.hide()
 	
 func show_screen(screen):
 	$Overlay/Opening.hide()
