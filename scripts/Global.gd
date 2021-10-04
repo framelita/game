@@ -44,49 +44,49 @@ var stage_dictionary = { # change this to set the stage variables
 		"max_crying": 5,
 		"delay": 10,
 		"reaction_time": 6,
-		"target_score": 600
+		"target_score": 1100
 	},
 	3: {
 		"max_crying": 6,
 		"delay": 10,
 		"reaction_time": 6,
-		"target_score": 700
+		"target_score": 1800
 	},
 	4: {
 		"max_crying": 6,
 		"delay": 10,
 		"reaction_time": 5,
-		"target_score": 800
+		"target_score": 2600
 	},
 	5: {
 		"max_crying": 7,
 		"delay": 10,
 		"reaction_time": 5,
-		"target_score": 900
+		"target_score": 3500
 	},
 	6: {
 		"max_crying": 7,
 		"delay": 10,
 		"reaction_time": 5,
-		"target_score": 1000
+		"target_score": 4500
 	},
 	7: {
 		"max_crying": 8,
 		"delay": 10,
 		"reaction_time": 4,
-		"target_score": 1100
+		"target_score": 5600
 	},
 	8: {
 		"max_crying": 8,
 		"delay": 10,
 		"reaction_time": 4,
-		"target_score": 1200
+		"target_score": 6800
 	},
 	9: {
 		"max_crying": 9,
 		"delay": 10,
 		"reaction_time": 4,
-		"target_score": 1300
+		"target_score": 8100
 	},
 	10: {
 		"max_crying": 9,
