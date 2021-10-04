@@ -33,6 +33,7 @@ var max_x = 320 - grid
 var max_y = 640 - grid
 var paused = false
 var game_over = false
+var has_played_before = false
 
 var stage_dictionary = { # change this to set the stage variables
 	1: {
@@ -130,7 +131,8 @@ func add_points():
 
 func clear_all_blocks():
 	for item in inactive_blocks:
-		item.destroy_block()
+		if is_instance_valid(item):
+			item.destroy_block()
 	inactive.clear()
 	inactive_blocks.clear()
 	counting_down.clear()
@@ -166,19 +168,21 @@ func update_stage_variables():
 		target_score = stage_dictionary[stage]["target_score"]
 		
 func game_over():
+	game_over = true
 	emit_signal("game_over")
 	
 func start_game():
 	emit_signal("start_game")
 	
 func restart_game():
+	has_played_before = true
+	stage = 0
 	game_time = 0
 	speed = 1
 	points = 0
 	game_over = false
-	update_stage(0)
+	print("stage is", stage, " - ", game_time, " - ", points)
 	get_tree().reload_current_scene()
-	emit_signal("restart_game")
 	
 func clear_stage():
 	emit_signal("clear_stage")

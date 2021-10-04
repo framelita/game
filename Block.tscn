@@ -345,7 +345,7 @@ centered = false
 
 [node name="SlimeFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 36 )
-frame = 6
+frame = 3
 playing = true
 centered = false
 

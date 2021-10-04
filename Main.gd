@@ -32,6 +32,10 @@ func _ready():
 	var _error7 = Global.connect("game_over", self, "game_over")
 	var _error8 = Global.connect("next_crying_block", self, "next_crying_block")
 	var _error9 = Global.connect("clear_stage", self, "clear_stage")
+	
+	# for when user click restart
+	if Global.has_played_before:
+		start_game()
 
 # in here, Timer is used for moving the block down every sec or showing new shapes on top
 func _on_Timer_timeout():

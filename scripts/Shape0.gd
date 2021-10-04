@@ -63,7 +63,7 @@ func move_down():
 		if not is_fixed:
 			for ch in get_children():
 				if not ch.can_move_down():
-					print("create position: %s e position: %s"%[create_position,position])
+					# print("create position: %s e position: %s"%[create_position,position])
 					if create_position == position:
 						Global.game_over()
 					is_fixed = true

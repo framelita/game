@@ -132,7 +132,6 @@ func shift_blocks(blocks):
 			Global.counting_down[countdown_index].y = Global.inactive[i].y
 	
 func destroy_block():
-	print("destroying blocks, now left: ", Global.counting_down.size())
 	queue_free()
 
 func dying_block():
