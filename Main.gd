@@ -121,6 +121,8 @@ func pause_game():
 	Input.set_custom_mouse_cursor(heart, Input.CURSOR_POINTING_HAND)
 	print("PAISED")
 	Global.paused = true
+	if has_active_shape:
+		active_shape.queue_free() # ensure new shape is cleared before new stage
 	active_shape = null
 	has_active_shape = false
 	$Timer.stop()
